@@ -1,0 +1,173 @@
+/* Resetare margini implicite pentru întreaga pagină */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: auto;
+}
+
+/* Stilizează containerul principal al paginii Creare Bilet */
+.create-ticket-container {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ff0000, #333333); /* Gradient roșu-negru */
+}
+
+/* Stilizează formularul de creare bilet (stânga) */
+.ticket-form {
+    flex: 1;
+    background: #ffffff; /* Alb pentru formular */
+    padding: 40px;
+    border-right: 2px solid #000000; /* Bordură neagră */
+    color: #000000;
+}
+
+.ticket-form h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ff0000; /* Roșu pentru titlu */
+    font-family: 'Arial', sans-serif;
+}
+
+.ticket-form .error {
+    color: #ff0000; /* Roșu pentru eroare */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.ticket-form .success {
+    color: #ff0000; /* Roșu pentru mesaj de succes */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #000000; /* Negru pentru etichete */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000000; /* Bordură neagră */
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background: #ffffff; /* Fundal alb pentru câmpuri */
+    color: #000000; /* Text negru în câmpuri */
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #ff0000; /* Bordură roșie la focus */
+}
+
+.ticket-form button {
+    width: 100%;
+    padding: 12px;
+    background: #ff0000; /* Roșu pentru buton */
+    border: none;
+    border-radius: 5px;
+    color: #ffffff; /* Text alb pe buton */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.ticket-form button:hover {
+    background: #000000; /* Negru la hover */
+}
+
+/* Stilizează lista de cote selectate */
+.selected-cote h3 {
+    margin-bottom: 10px;
+    color: #ff0000; /* Roșu pentru titlu */
+}
+
+.selected-cote ul {
+    list-style: none;
+    padding: 0;
+}
+
+.selected-cote li {
+    margin-bottom: 8px;
+    color: #000000;
+}
+
+/* Stilizează lista de meciuri (dreapta) */
+.matches-list {
+    flex: 1;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.9); /* Fundal semi-transparent alb */
+    color: #000000;
+}
+
+.matches-list h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ff0000; /* Roșu pentru titlu */
+    font-family: 'Arial', sans-serif;
+}
+
+.match-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #ffffff; /* Alb pentru fiecare meci */
+    border: 1px solid #000000; /* Bordură neagră */
+    border-radius: 5px;
+}
+
+.match-item h3 {
+    margin-bottom: 10px;
+    color: #ff0000; /* Roșu pentru titlu meci */
+}
+
+.match-item p {
+    margin: 5px 0;
+    color: #000000;
+}
+
+/* Stilizează butoanele pentru cote */
+.cote {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cote button {
+    padding: 8px 12px;
+    background: #ff0000; /* Roșu pentru buton */
+    border: none;
+    border-radius: 5px;
+    color: #ffffff; /* Text alb pe buton */
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.cote button:hover {
+    background: #000000; /* Negru la hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .create-ticket-container {
+        flex-direction: column;
+    }
+
+    .ticket-form, .matches-list {
+        flex: none;
+        width: 100%;
+        border: none;
+    }
+}

@@ -1,0 +1,66 @@
+/* Resetare margini implicite pentru întreaga pagină */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Stilizează containerul principal al paginii Home */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../assets/home.jpg'); /* Calea către imagine */
+    background-size: cover; /* Imaginea acoperă întreaga pagină */
+    background-position: center; /* Centrează imaginea */
+    background-repeat: no-repeat; /* Evită repetarea imaginii */
+    color: #ffffff; /* Text alb pentru contrast */
+    text-align: center;
+}
+
+/* Stilizează titlul */
+.home-container h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Umbră pentru text */
+}
+
+/* Stilizează link-ul pentru admin */
+.admin-link {
+    margin-bottom: 20px;
+}
+
+.admin-link a {
+    color: #ff0000; /* Roșu pentru link */
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2); /* Fundal semi-transparent */
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.admin-link a:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Stilizează butonul de logout */
+.logout-button {
+    padding: 10px 20px;
+    background: #ff0000; /* Roșu pentru buton */
+    border: none;
+    border-radius: 5px;
+    color: #ffffff; /* Text alb pe buton */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.logout-button:hover {
+    background: #000000; /* Negru la hover */
+}

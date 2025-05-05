@@ -24,3 +24,10 @@ export const logout = () => {
 export const getToken = (): string | null => {
     return localStorage.getItem('token');
 };
+
+export const getRole = (): string | null => {
+    const token = getToken();
+    if (!token) return null;
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.role;
+};
