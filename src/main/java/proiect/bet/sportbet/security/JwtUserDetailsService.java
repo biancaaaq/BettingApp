@@ -8,29 +8,29 @@ import org.springframework.stereotype.Service;
 import proiect.bet.sportbet.models.Utilizator;
 import proiect.bet.sportbet.repository.UtilizatorRepository;
 
-import java.util.Optional;
+import java.util.Collections;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class JwtUserDetailsService implements UserDetailsService {
+
     private final UtilizatorRepository utilizatorRepository;
 
-    public CustomUserDetailsService(UtilizatorRepository utilizatorRepository) {
+    public JwtUserDetailsService(UtilizatorRepository utilizatorRepository) {
         this.utilizatorRepository = utilizatorRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("Încărcare utilizator: " + username);
-        Optional<Utilizator> utilizatorOpt = utilizatorRepository.findByNumeUtilizator(username);
-        if (utilizatorOpt.isEmpty()) {
-            System.out.println("Utilizatorul " + username + " nu a fost găsit în baza de date.");
-            throw new UsernameNotFoundException("Utilizatorul " + username + " nu a fost găsit.");
-        }
-        Utilizator utilizator = utilizatorOpt.get();
+        Utilizator utilizator = utilizatorRepository.findByNumeUtilizator(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Utilizatorul nu a fost găsit: " + username));
         System.out.println("Utilizator găsit: " + utilizator.getNumeUtilizator() + ", parola: " + utilizator.getParola() + ", rol: " + utilizator.getRol());
-        return User.withUsername(utilizator.getNumeUtilizator())
-                .password(utilizator.getParola())
-                .roles(utilizator.getRol().toString())
-                .build();
+        String role = "ROLE_" + utilizator.getRol().toString();
+        System.out.println("Rol setat: " + role);
+        return new User(
+                utilizator.getNumeUtilizator(),
+                utilizator.getParola(),
+                Collections.singletonList(new org.springframework.security.core.authority.SimpleGrantedAuthority(role))
+        );
     }
 }

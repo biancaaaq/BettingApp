@@ -1,5 +1,6 @@
 package proiect.bet.sportbet.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import proiect.bet.sportbet.models.Utilizator;
 import proiect.bet.sportbet.repository.UtilizatorRepository;
@@ -10,49 +11,41 @@ import java.util.Optional;
 @Service
 public class UtilizatorService {
     private final UtilizatorRepository utilizatorRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UtilizatorService(UtilizatorRepository utilizatorRepository) {
+    public UtilizatorService(UtilizatorRepository utilizatorRepository, PasswordEncoder passwordEncoder) {
         this.utilizatorRepository = utilizatorRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    // Create
     public Utilizator createUtilizator(Utilizator utilizator) {
+        // Criptează parola înainte de a salva utilizatorul
+        utilizator.setParola(passwordEncoder.encode(utilizator.getParola()));
         return utilizatorRepository.save(utilizator);
     }
 
-    // Read (all)
     public List<Utilizator> getAllUtilizatori() {
         return utilizatorRepository.findAll();
     }
 
-    // Read (by ID)
     public Optional<Utilizator> getUtilizatorById(Long id) {
         return utilizatorRepository.findById(id);
     }
 
-    // Update
-    public Utilizator updateUtilizator(Long id, Utilizator updatedUtilizator) {
-        Optional<Utilizator> existingUtilizator = utilizatorRepository.findById(id);
-        if (existingUtilizator.isPresent()) {
-            Utilizator utilizator = existingUtilizator.get();
-            utilizator.setNumeUtilizator(updatedUtilizator.getNumeUtilizator());
-            utilizator.setEmail(updatedUtilizator.getEmail());
-            utilizator.setParola(updatedUtilizator.getParola());
-            utilizator.setRol(updatedUtilizator.getRol());
-            utilizator.setActiv(updatedUtilizator.isActiv());
-            utilizator.setDataCreare(updatedUtilizator.getDataCreare());
-            return utilizatorRepository.save(utilizator);
-        } else {
-            throw new RuntimeException("Utilizatorul cu ID-ul " + id + " nu a fost găsit.");
+    public Utilizator updateUtilizator(Long id, Utilizator utilizator) {
+        if (!utilizatorRepository.existsById(id)) {
+            throw new RuntimeException("Utilizatorul nu a fost găsit");
         }
+        utilizator.setId(id);
+        // Criptează parola dacă este actualizată
+        utilizator.setParola(passwordEncoder.encode(utilizator.getParola()));
+        return utilizatorRepository.save(utilizator);
     }
 
-    // Delete
     public void deleteUtilizator(Long id) {
-        if (utilizatorRepository.existsById(id)) {
-            utilizatorRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Utilizatorul cu ID-ul " + id + " nu a fost găsit.");
+        if (!utilizatorRepository.existsById(id)) {
+            throw new RuntimeException("Utilizatorul nu a fost găsit");
         }
+        utilizatorRepository.deleteById(id);
     }
-}   
+}

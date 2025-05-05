@@ -42,11 +42,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Activează CORS
-            .csrf(csrf -> csrf.disable()) // Dezactivează CSRF (stateless API)
-            .authenticationProvider(authenticationProvider()) // Folosește DaoAuthenticationProvider
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .csrf(csrf -> csrf.disable())
+            .authenticationProvider(authenticationProvider())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/api-docs/**", "/v3/api-docs/**").permitAll() // Permite accesul la Swagger UI și OpenAPI
                 .requestMatchers("/utilizatori/**").hasRole("ADMIN")
                 .requestMatchers("/tranzactii/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/bilete/**").hasAnyRole("USER", "ADMIN")
@@ -61,7 +62,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Fără sesiuni (stateless)
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             );
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
@@ -71,7 +72,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Permite cererile din frontend-ul React
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);

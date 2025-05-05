@@ -35,8 +35,8 @@ C:\Users\andre\sportbet\src\main\java\proiect\bet\sportbet\repository\PromotieRe
 C:\Users\andre\sportbet\src\main\java\proiect\bet\sportbet\repository\RolUtilizatorRepository.java
 C:\Users\andre\sportbet\src\main\java\proiect\bet\sportbet\repository\TranzactieRepository.java
 C:\Users\andre\sportbet\src\main\java\proiect\bet\sportbet\repository\UtilizatorRepository.java
-C:\Users\andre\sportbet\src\main\java\proiect\bet\sportbet\security\CustomUserDetailsService.java
 C:\Users\andre\sportbet\src\main\java\proiect\bet\sportbet\security\JwtRequestFilter.java
+C:\Users\andre\sportbet\src\main\java\proiect\bet\sportbet\security\JwtUserDetailsService.java
 C:\Users\andre\sportbet\src\main\java\proiect\bet\sportbet\security\JwtUtil.java
 C:\Users\andre\sportbet\src\main\java\proiect\bet\sportbet\security\SecurityConfig.java
 C:\Users\andre\sportbet\src\main\java\proiect\bet\sportbet\service\BalantaService.java
