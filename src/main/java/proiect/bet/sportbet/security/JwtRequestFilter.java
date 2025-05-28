@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -20,65 +19,64 @@ import java.io.IOException;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
-
-    private final UserDetailsService userDetailsService;
+    private final JwtUserDetailsService jwtUserDetailsService;
     private final JwtUtil jwtUtil;
 
-    public JwtRequestFilter(UserDetailsService userDetailsService, JwtUtil jwtUtil) {
-        this.userDetailsService = userDetailsService;
+    public JwtRequestFilter(JwtUserDetailsService jwtUserDetailsService, JwtUtil jwtUtil) {
+        this.jwtUserDetailsService = jwtUserDetailsService;
         this.jwtUtil = jwtUtil;
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        final String authorizationHeader = request.getHeader("Authorization");
+        // Permite cererile către /api/auth/login fără verificare
+        if (request.getRequestURI().startsWith("/api/auth/login")) {
+            chain.doFilter(request, response);
+            return;
+        }
+
+        final String requestTokenHeader = request.getHeader("Authorization");
 
         String username = null;
-        String jwt = null;
+        String jwtToken = null;
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            jwt = authorizationHeader.substring(7);
+        if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
+            jwtToken = requestTokenHeader.substring(7);
             try {
-                username = jwtUtil.getUsernameFromToken(jwt);
-                System.out.println("Username extracted from token: " + username);
-                String role = jwtUtil.getRoleFromToken(jwt);
-                System.out.println("Role extracted from token: " + role);
+                username = jwtUtil.getUsernameFromToken(jwtToken);
+                System.out.println("Username extras din token: " + username);
             } catch (IllegalArgumentException e) {
-                System.out.println("Unable to get JWT Token: " + e.getMessage());
+                System.out.println("Unable to get JWT Token");
             } catch (ExpiredJwtException e) {
-                System.out.println("JWT Token has expired: " + e.getMessage());
-            } catch (SignatureException e) {
-                System.out.println("JWT signature does not match: " + e.getMessage());
-            } catch (MalformedJwtException e) {
-                System.out.println("Invalid JWT token: " + e.getMessage());
-            } catch (UnsupportedJwtException e) {
-                System.out.println("Unsupported JWT token: " + e.getMessage());
+                System.out.println("JWT Token has expired");
+            } catch (SignatureException | MalformedJwtException | UnsupportedJwtException e) {
+                System.out.println("JWT Token validation failed");
             }
         } else {
             System.out.println("JWT Token does not begin with Bearer String");
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-            System.out.println("UserDetails loaded: " + userDetails.getUsername() + ", Authorities: " + userDetails.getAuthorities());
+            UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
+            if (jwtUtil.validateToken(jwtToken, userDetails)) {
+                // Verifică dacă utilizatorul este auto-exclus
+                if (!userDetails.isEnabled()) {
+                    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                    response.getWriter().write("Contul este autoexclus");
+                    return;
+                }
 
-            if (jwtUtil.validateToken(jwt)) {
-                System.out.println("JWT Token is valid");
+                // Log autoritățile pentru depanare
+                System.out.println("Autorități utilizator " + username + ": " + userDetails.getAuthorities());
+
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                usernamePasswordAuthenticationToken
+                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-                System.out.println("Authentication set for user: " + username);
-            } else {
-                System.out.println("JWT Token validation failed");
             }
-        } else if (username == null) {
-            System.out.println("Username could not be extracted from token");
-        } else {
-            System.out.println("Authentication already exists in SecurityContext");
         }
-
         chain.doFilter(request, response);
     }
 }

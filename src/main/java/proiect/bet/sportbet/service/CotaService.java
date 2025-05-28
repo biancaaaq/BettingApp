@@ -27,25 +27,22 @@ public class CotaService {
         return cotaRepository.findById(id);
     }
 
-    public Cota updateCota(Long id, Cota updatedCota) {
-        Optional<Cota> existingCota = cotaRepository.findById(id);
-        if (existingCota.isPresent()) {
-            Cota cota = existingCota.get();
-            cota.setMeci(updatedCota.getMeci());
-            cota.setDescriere(updatedCota.getDescriere());
-            cota.setValoare(updatedCota.getValoare());
-            cota.setBlocat(updatedCota.isBlocat());
-            return cotaRepository.save(cota);
-        } else {
-            throw new RuntimeException("Cota cu ID-ul " + id + " nu a fost găsită.");
+    public List<Cota> getCoteByMeciId(Long meciId) {
+        return cotaRepository.findByMeciId(meciId);
+    }
+
+    public Cota updateCota(Long id, Cota cota) {
+        if (!cotaRepository.existsById(id)) {
+            throw new RuntimeException("Cota nu a fost găsită");
         }
+        cota.setId(id);
+        return cotaRepository.save(cota);
     }
 
     public void deleteCota(Long id) {
-        if (cotaRepository.existsById(id)) {
-            cotaRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Cota cu ID-ul " + id + " nu a fost găsită.");
+        if (!cotaRepository.existsById(id)) {
+            throw new RuntimeException("Cota nu a fost găsită");
         }
+        cotaRepository.deleteById(id);
     }
 }

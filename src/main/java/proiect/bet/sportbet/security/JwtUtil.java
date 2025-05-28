@@ -3,6 +3,7 @@ package proiect.bet.sportbet.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -16,7 +17,7 @@ public class JwtUtil {
 
     public String generateToken(String username, String role) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("role", role);
+        claims.put("role", role); // Rolul este inclus în claim-uri
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(username)
@@ -41,12 +42,11 @@ public class JwtUtil {
         return getClaimsFromToken(token).get("role", String.class);
     }
 
-    public boolean validateToken(String token) {
-        try {
-            Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public boolean validateToken(String token, UserDetails userDetails) {
+        final String username = getUsernameFromToken(token);
+        Claims claims = getClaimsFromToken(token);
+        Date expiration = claims.getExpiration();
+        boolean isTokenExpired = expiration.before(new Date());
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired);
     }
 }

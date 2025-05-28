@@ -19,7 +19,6 @@ proiect\bet\sportbet\repository\PromotieRepository.class
 proiect\bet\sportbet\models\Utilizator$Rol.class
 proiect\bet\sportbet\models\Cota.class
 proiect\bet\sportbet\controller\BiletController.class
-proiect\bet\sportbet\controller\CerereAutoexcludereController.class
 proiect\bet\sportbet\service\DetaliuBiletService.class
 proiect\bet\sportbet\controller\HelloWorldController.class
 proiect\bet\sportbet\service\MeciService.class

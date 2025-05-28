@@ -27,28 +27,18 @@ public class BiletService {
         return biletRepository.findById(id);
     }
 
-    public Bilet updateBilet(Long id, Bilet updatedBilet) {
-        Optional<Bilet> existingBilet = biletRepository.findById(id);
-        if (existingBilet.isPresent()) {
-            Bilet bilet = existingBilet.get();
-            bilet.setUtilizator(updatedBilet.getUtilizator());
-            bilet.setGrup(updatedBilet.getGrup());
-            bilet.setCotaTotala(updatedBilet.getCotaTotala());
-            bilet.setMiza(updatedBilet.getMiza());
-            bilet.setCastigPotential(updatedBilet.getCastigPotential());
-            bilet.setStatus(updatedBilet.getStatus());
-            bilet.setDataCreare(updatedBilet.getDataCreare());
-            return biletRepository.save(bilet);
-        } else {
-            throw new RuntimeException("Biletul cu ID-ul " + id + " nu a fost găsit.");
+    public Bilet updateBilet(Long id, Bilet bilet) {
+        if (!biletRepository.existsById(id)) {
+            throw new RuntimeException("Biletul nu a fost găsit");
         }
+        bilet.setId(id);
+        return biletRepository.save(bilet);
     }
 
     public void deleteBilet(Long id) {
-        if (biletRepository.existsById(id)) {
-            biletRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Biletul cu ID-ul " + id + " nu a fost găsit.");
+        if (!biletRepository.existsById(id)) {
+            throw new RuntimeException("Biletul nu a fost găsit");
         }
+        biletRepository.deleteById(id);
     }
 }

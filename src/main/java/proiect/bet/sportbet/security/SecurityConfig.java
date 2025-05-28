@@ -47,8 +47,11 @@ public class SecurityConfig {
             .authenticationProvider(authenticationProvider())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/api-docs/**", "/v3/api-docs/**").permitAll() // Permite accesul la Swagger UI și OpenAPI
+                .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/api-docs/**", "/v3/api-docs/**").permitAll()
+                .requestMatchers("/autoexcludere").hasAnyRole("USER", "ADMIN")
+                .requestMatchers("/autoexcludere/aproba/**", "/autoexcludere/cereri").hasRole("ADMIN")
                 .requestMatchers("/utilizatori/**").hasRole("ADMIN")
+                .requestMatchers("/utilizatori/activare/**").authenticated()
                 .requestMatchers("/tranzactii/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/bilete/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/detalii-bilete/**").hasAnyRole("USER", "ADMIN")

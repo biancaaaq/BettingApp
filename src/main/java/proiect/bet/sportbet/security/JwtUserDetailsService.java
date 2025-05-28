@@ -30,6 +30,10 @@ public class JwtUserDetailsService implements UserDetailsService {
         return new User(
                 utilizator.getNumeUtilizator(),
                 utilizator.getParola(),
+                utilizator.getActiv(), // isEnabled
+                true, // isAccountNonExpired
+                true, // isCredentialsNonExpired
+                true, // isAccountNonLocked
                 Collections.singletonList(new org.springframework.security.core.authority.SimpleGrantedAuthority(role))
         );
     }

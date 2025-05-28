@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import proiect.bet.sportbet.models.Cota;
 import proiect.bet.sportbet.service.CotaService;
@@ -54,6 +55,25 @@ public class CotaController {
         return cotaService.getCotaById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/meci/{meciId}")
+    @Operation(summary = "Obține cotele unui meci", description = "Returnează lista cotelor pentru un meci specific")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Lista cotelor returnată"),
+        @ApiResponse(responseCode = "403", description = "Acces interzis (necesită rol ADMIN sau USER)")
+    })
+    public ResponseEntity<List<Cota>> getCoteByMeciId(@PathVariable Long meciId) {
+        System.out.println("Cerere primită pentru URL: /cote/meci/" + meciId);
+        System.out.println("Autentificare în CotaController: " + SecurityContextHolder.getContext().getAuthentication());
+        if (SecurityContextHolder.getContext().getAuthentication() != null) {
+            System.out.println("Utilizator autentificat: " + SecurityContextHolder.getContext().getAuthentication().getName());
+            System.out.println("Autorități: " + SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+        } else {
+            System.out.println("Niciun utilizator autentificat!");
+        }
+        List<Cota> cote = cotaService.getCoteByMeciId(meciId);
+        return ResponseEntity.ok(cote);
     }
 
     @PutMapping("/{id}")
