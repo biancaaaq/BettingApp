@@ -6,19 +6,28 @@ interface AuthResponse {
     jwt: string;
 }
 
-export const register = async (username: string, password: string, email: string) => {
-    return await axios.post(`${API_URL}/register`, { username, password, email });
+export const register = async (username: string, password: string, email: string): Promise<string> => {
+    try {
+        const response = await axios.post(`${API_URL}/register`, { username, password, email });
+        return response.data; // Returnează mesajul de succes (ex. "Utilizator înregistrat cu succes!")
+    } catch (error: any) {
+        console.error('Eroare la înregistrare:', error);
+        throw error.response?.data || error.message || 'Eroare necunoscută';
+    }
 };
 
 export const login = async (username: string, password: string): Promise<string> => {
     const response = await axios.post<AuthResponse>(`${API_URL}/login`, { username, password });
     const token = response.data.jwt;
     localStorage.setItem('token', token);
+    const role = getRoleFromToken(token);
+    localStorage.setItem('role', role || '');
     return token;
 };
 
 export const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
 };
 
 export const getToken = (): string | null => {
@@ -26,8 +35,22 @@ export const getToken = (): string | null => {
 };
 
 export const getRole = (): string | null => {
-    const token = getToken();
+    return localStorage.getItem('role');
+};
+
+export const getRoleFromToken = (token: string | null): string | null => {
     if (!token) return null;
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload.role;
+    try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        const role = payload.role;
+        return role.startsWith('ROLE_') ? role.substring(5) : role;
+    } catch (e) {
+        console.error('Eroare la extragerea rolului din token:', e);
+        return null;
+    }
+};
+
+export const getFullRoleFromToken = (token: string | null): string | null => {
+    const role = getRoleFromToken(token);
+    return role ? `ROLE_${role}` : null;
 };

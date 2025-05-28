@@ -15,29 +15,40 @@ import AddCota from './components/AddCota';
 import AddMeci from './components/AddMeci';
 import AddBalanta from './components/AddBalanta';
 import CreateTicket from './components/CreateTicket';
-import PrivateRoute from './services/PrivateRoute';
+import Tranzactii from './components/Tranzactii';
+import BileteMele from './components/BileteMele';
+import Autoexcludere from './components/Autoexcludere';
+import ContAutoexclus from './components/ContAutoexclus';
+import AprobaCereri from './components/AprobaCereri';
+import ManageUsers from './components/ManageUsers';
 
 const App: React.FC = () => {
     return (
         <Router>
-                <Routes>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
-                    <Route path="/create-ticket" element={<PrivateRoute><CreateTicket /></PrivateRoute>} />
-                    <Route path="/admin" element={<PrivateRoute requiredRole="ADMIN"><AdminPanel /></PrivateRoute>} />
-                    <Route path="/admin/add-utilizator" element={<PrivateRoute requiredRole="ADMIN"><AddUtilizator /></PrivateRoute>} />
-                    <Route path="/admin/add-tranzactie" element={<PrivateRoute requiredRole="ADMIN"><AddTranzactie /></PrivateRoute>} />
-                    <Route path="/admin/add-bilet" element={<PrivateRoute requiredRole="ADMIN"><AddBilet /></PrivateRoute>} />
-                    <Route path="/admin/add-detaliu-bilet" element={<PrivateRoute requiredRole="ADMIN"><AddDetaliuBilet /></PrivateRoute>} />
-                    <Route path="/admin/add-grup-privat" element={<PrivateRoute requiredRole="ADMIN"><AddGrupPrivat /></PrivateRoute>} />
-                    <Route path="/admin/add-rol-utilizator" element={<PrivateRoute requiredRole="ADMIN"><AddRolUtilizator /></PrivateRoute>} />
-                    <Route path="/admin/add-promotie" element={<PrivateRoute requiredRole="ADMIN"><AddPromotie /></PrivateRoute>} />
-                    <Route path="/admin/add-cerere-autoexcludere" element={<PrivateRoute requiredRole="ADMIN"><AddCerereAutoexcludere /></PrivateRoute>} />
-                    <Route path="/admin/add-cota" element={<PrivateRoute requiredRole="ADMIN"><AddCota /></PrivateRoute>} />
-                    <Route path="/admin/add-meci" element={<PrivateRoute requiredRole="ADMIN"><AddMeci /></PrivateRoute>} />
-                    <Route path="/admin/add-balanta" element={<PrivateRoute requiredRole="ADMIN"><AddBalanta /></PrivateRoute>} />
-                    <Route path="/" element={<Login />} />
-                </Routes>
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/bilete/creare" element={<CreateTicket />} />
+                <Route path="/bilete/mele" element={<BileteMele />} />
+                <Route path="/tranzactii" element={<Tranzactii />} />
+                <Route path="/autoexcludere" element={<Autoexcludere />} />
+                <Route path="/cont-autoexclus" element={<ContAutoexclus />} />
+                <Route path="/admin" element={<AdminPanel />} />
+                <Route path="/admin/add-utilizator" element={<AddUtilizator />} />
+                <Route path="/admin/add-tranzactie" element={<AddTranzactie />} />
+                <Route path="/admin/add-bilet" element={<AddBilet />} />
+                <Route path="/admin/add-detaliu-bilet" element={<AddDetaliuBilet />} />
+                <Route path="/admin/add-grup-privat" element={<AddGrupPrivat />} />
+                <Route path="/admin/add-rol-utilizator" element={<AddRolUtilizator />} />
+                <Route path="/admin/add-promotie" element={<AddPromotie />} />
+                <Route path="/admin/add-cerere-autoexcludere" element={<AddCerereAutoexcludere />} />
+                <Route path="/admin/aproba-cereri" element={<AprobaCereri />} />
+                <Route path="/admin/manage-users" element={<ManageUsers />} />
+                <Route path="/admin/add-cota" element={<AddCota />} />
+                <Route path="/admin/add-meci" element={<AddMeci />} />
+                <Route path="/admin/add-balanta" element={<AddBalanta />} />
+                <Route path="/" element={<Login />} />
+            </Routes>
         </Router>
     );
 };

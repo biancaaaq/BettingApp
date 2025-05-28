@@ -9,83 +9,98 @@ body {
 /* Stilizează containerul principal */
 .login-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #ff99cc, #ff66b3); /* Tranziție de la roz deschis la roz închis */
-}
-
-/* Stilizează formularul */
-.login-form {
-    background: #ffffff; /* Alb pentru formular */
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Umbră neagră */
-    width: 100%;
-    max-width: 400px;
-    border: 2px solid #000000; /* Bordură neagră */
+    background: linear-gradient(135deg, #ff99cc, #ff66b3);
+    color: #000000;
 }
 
 /* Stilizează titlul */
-.login-form h2 {
+.login-container h2 {
     text-align: center;
     margin-bottom: 30px;
-    color: #ff66b3; /* Roșu pentru titlu */
+    color: #ff0000;
     font-family: 'Arial', sans-serif;
 }
 
-/* Stilizează mesajul de eroare */
-.login-form .error {
-    color: #ff66b3; /* Roșu pentru eroare */
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 14px;
+/* Stilizează formularul */
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
 }
 
-/* Stilizează câmpurile formularului */
+/* Stilizează grupurile de formular */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    width: 100%;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #000000; /* Negru pentru etichete */
+    margin-bottom: 5px;
+    color: #ffffff;
     font-weight: bold;
-    font-family: 'Arial', sans-serif;
 }
 
 .form-group input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #000000; /* Bordură neagră */
+    padding: 8px;
+    border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    transition: border-color 0.3s ease;
-    background: #ffffff; /* Fundal alb pentru câmpuri */
-    color: #000000; /* Text negru în câmpuri */
 }
 
-.form-group input:focus {
-    outline: none;
-    border-color: #ff66b3; /* Bordură roșie la focus */
-}
-
-/* Stilizează butonul */
-.login-form button {
-    width: 100%;
-    padding: 12px;
-    background: #ff66b3; /* Roșu pentru buton */
+/* Stilizează butonul de submit */
+.login-container button[type="submit"] {
+    padding: 10px 20px;
+    background: #ff0000;
     border: none;
     border-radius: 5px;
-    color: #ffffff; /* Text alb pe buton */
+    color: #ffffff;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
-.login-form button:hover {
-    background: #000000; /* Negru la hover */
-    color: #ffffff; /* Text alb la hover */
+.login-container button[type="submit"]:hover {
+    background: #000000;
+}
+
+/* Stilizează butonul de comutare */
+.toggle-button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.toggle-button:hover {
+    color: #ff0000;
+}
+
+/* Stilizează mesajele de eroare și succes */
+.error {
+    color: #ff0000;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.success {
+    color: #00ff00;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }

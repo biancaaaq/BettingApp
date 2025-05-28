@@ -1,0 +1,170 @@
+/* Resetare margini implicite pentru întreaga pagină */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: auto;
+}
+
+/* Stilizează containerul principal al paginii Tranzactii */
+.tranzactii-container {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ff0000, #333333); /* Gradient roșu-negru */
+}
+
+/* Stilizează formularul de tranzactii (stânga) */
+.tranzactii-form {
+    flex: 1;
+    background: #ffffff; /* Alb pentru formular */
+    padding: 40px;
+    border-right: 2px solid #000000; /* Bordură neagră */
+    color: #000000;
+}
+
+.tranzactii-form h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ff0000; /* Roșu pentru titlu */
+    font-family: 'Arial', sans-serif;
+}
+
+.tranzactii-form h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000000;
+    font-family: 'Arial', sans-serif;
+}
+
+.tranzactii-form .error {
+    color: #ff0000; /* Roșu pentru eroare */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.tranzactii-form .success {
+    color: #ff0000; /* Roșu pentru mesaj de succes */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #000000; /* Negru pentru etichete */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000000; /* Bordură neagră */
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background: #ffffff; /* Fundal alb pentru câmpuri */
+    color: #000000; /* Text negru în câmpuri */
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #ff0000; /* Bordură roșie la focus */
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.action-buttons button {
+    padding: 12px 24px;
+    background: #ff0000; /* Roșu pentru buton */
+    border: none;
+    border-radius: 5px;
+    color: #ffffff; /* Text alb pe buton */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.action-buttons button:hover {
+    background: #000000; /* Negru la hover */
+}
+
+/* Stilizează lista de tranzactii (dreapta) */
+.tranzactii-list {
+    flex: 1;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.9); /* Fundal semi-transparent alb */
+    color: #000000;
+}
+
+.tranzactii-list h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ff0000; /* Roșu pentru titlu */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Stilizează tabelul de tranzacții */
+.tranzactii-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tranzactii-table th, .tranzactii-table td {
+    padding: 10px;
+    border: 1px solid #000000; /* Bordură neagră */
+    text-align: center;
+}
+
+.tranzactii-table th {
+    background: #ff0000; /* Roșu pentru header */
+    color: #ffffff; /* Text alb */
+    font-weight: bold;
+}
+
+.tranzactii-table td {
+    background: #ffffff; /* Alb pentru celule */
+    color: #000000;
+}
+
+.tranzactii-table tr:nth-child(even) td {
+    background: #f0f0f0; /* Gri deschis pentru rânduri pare */
+}
+
+.tranzactii-list p {
+    text-align: center;
+    color: #000000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tranzactii-container {
+        flex-direction: column;
+    }
+
+    .tranzactii-form, .tranzactii-list {
+        flex: none;
+        width: 100%;
+        border: none;
+    }
+
+    .tranzactii-table {
+        font-size: 14px;
+    }
+
+    .tranzactii-table th, .tranzactii-table td {
+        padding: 8px;
+    }
+}

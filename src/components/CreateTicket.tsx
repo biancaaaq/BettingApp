@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import { getToken } from '../services/authService';
 import '../design/CreateTicket.css';
 
 interface Meci {
@@ -17,10 +18,12 @@ interface Cota {
     id: number;
     descriere: string;
     valoare: number;
+    blocat: boolean;
 }
 
 const CreateTicket: React.FC = () => {
     const [meciuri, setMeciuri] = useState<Meci[]>([]);
+    const [coteByMeci, setCoteByMeci] = useState<{ [key: number]: Cota[] }>({});
     const [selectedCote, setSelectedCote] = useState<Cota[]>([]);
     const [miza, setMiza] = useState('');
     const [error, setError] = useState('');
@@ -32,6 +35,17 @@ const CreateTicket: React.FC = () => {
             try {
                 const response = await api.get('/meciuri');
                 setMeciuri(response.data);
+
+                const cotePromises = response.data.map(async (meci: Meci) => {
+                    const coteResponse = await api.get(`/cote/meci/${meci.id}`);
+                    return { meciId: meci.id, cote: coteResponse.data };
+                });
+                const coteResults = await Promise.all(cotePromises);
+                const coteMap = coteResults.reduce((acc, { meciId, cote }) => {
+                    acc[meciId] = cote;
+                    return acc;
+                }, {} as { [key: number]: Cota[] });
+                setCoteByMeci(coteMap);
             } catch (err: any) {
                 setError('Eroare la încărcarea meciurilor: ' + (err.response?.data || err.message));
             }
@@ -40,12 +54,17 @@ const CreateTicket: React.FC = () => {
     }, []);
 
     const handleAddCota = (cota: Cota) => {
+        if (cota.blocat) {
+            setError('Această cotă este blocată și nu poate fi selectată.');
+            return;
+        }
         setSelectedCote([...selectedCote, cota]);
     };
 
     const handleCreateTicket = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
+            console.log('Token trimis:', getToken());
             if (selectedCote.length === 0) {
                 throw new Error('Selectează cel puțin o cotă pentru a crea biletul.');
             }
@@ -55,17 +74,22 @@ const CreateTicket: React.FC = () => {
                 castigPotential: parseFloat(miza) * selectedCote.reduce((total, cota) => total * cota.valoare, 1),
                 status: 'ACTIVE',
                 dataCreare: new Date().toISOString(),
-                cote: selectedCote.map(cota => ({ id: cota.id })), // Trimite doar ID-urile cotelor
+                cote: selectedCote.map(cota => ({ id: cota.id })),
             });
             console.log('Răspuns de la server:', response.data);
             setSuccess('Bilet creat cu succes!');
             setSelectedCote([]);
             setMiza('');
+            setTimeout(() => navigate('/home'), 2000);
         } catch (err: any) {
             const errorMessage = err.response?.data || err.message || 'Eroare necunoscută';
             console.error('Eroare la crearea biletului:', errorMessage);
             setError(`Eroare la crearea biletului: ${errorMessage}`);
         }
+    };
+
+    const handleInapoi = () => {
+        navigate('/home');
     };
 
     return (
@@ -99,7 +123,10 @@ const CreateTicket: React.FC = () => {
                             </ul>
                         )}
                     </div>
-                    <button type="submit">Creează Bilet</button>
+                    <div className="action-buttons">
+                        <button type="submit">Creează Bilet</button>
+                        <button type="button" onClick={handleInapoi}>Înapoi</button>
+                    </div>
                 </form>
             </div>
             <div className="matches-list">
@@ -110,15 +137,20 @@ const CreateTicket: React.FC = () => {
                         <p>Competiție: {meci.competitie}</p>
                         <p>Data: {new Date(meci.dataMeci).toLocaleString()}</p>
                         <div className="cote">
-                            <button onClick={() => handleAddCota({ id: 1, descriere: `${meci.echipaAcasa} câștigă`, valoare: 1.5 })}>
-                                {meci.echipaAcasa} câștigă (1.5)
-                            </button>
-                            <button onClick={() => handleAddCota({ id: 2, descriere: `${meci.echipaDeplasare} câștigă`, valoare: 2.0 })}>
-                                {meci.echipaDeplasare} câștigă (2.0)
-                            </button>
-                            <button onClick={() => handleAddCota({ id: 3, descriere: 'Egal', valoare: 3.0 })}>
-                                Egal (3.0)
-                            </button>
+                            {coteByMeci[meci.id]?.length > 0 ? (
+                                coteByMeci[meci.id].map((cota) => (
+                                    <button
+                                        key={cota.id}
+                                        onClick={() => handleAddCota(cota)}
+                                        disabled={cota.blocat}
+                                        style={{ opacity: cota.blocat ? 0.5 : 1 }}
+                                    >
+                                        {cota.descriere} ({cota.valoare})
+                                    </button>
+                                ))
+                            ) : (
+                                <p>Nu există cote disponibile pentru acest meci.</p>
+                            )}
                         </div>
                     </div>
                 ))}
