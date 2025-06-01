@@ -25,10 +25,17 @@ export const login = async (username: string, password: string): Promise<string>
     return token;
 };
 
+// export const logout = () => {
+//     localStorage.removeItem('token');
+//     localStorage.removeItem('role');
+    
+// };
 export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
+  localStorage.removeItem("token");
+  localStorage.removeItem("username");
+  localStorage.removeItem("role");
 };
+
 
 export const getToken = (): string | null => {
     return localStorage.getItem('token');

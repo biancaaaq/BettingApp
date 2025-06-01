@@ -1,0 +1,45 @@
+.ticket-sidebar {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    width: 300px;
+    background-color: white;
+    border-left: 2px solid #ff0033;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 32px;
+}
+
+.ticket-sidebar h3 {
+    margin-top: 0;
+    color: #d40032;
+}
+
+.sidebar-input input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+.sidebar-button {
+    background-color: #ff0033;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.sidebar-button:hover {
+    background-color: #cc002a;
+}
+
+.sidebar-summary {
+    margin-top: 10px;
+    font-size: 14px;
+}

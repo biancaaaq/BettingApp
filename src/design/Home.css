@@ -1,66 +1,162 @@
-/* Resetare margini implicite pentru întreaga pagină */
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* Stilizează containerul principal al paginii Home */
-.home-container {
+.home-page {
+    background: url('../assets/home.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+.navbar {
+    margin-top: 10px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    border-radius: 32px;
+    height: 60px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    gap: 16px;
+}
+.page-layout {
+  display: flex;
+  gap: 20px;
+}
+
+.sidebar-form {
+  width: 30%;
+  background: #fff;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+}
+
+.page-content {
+  width: 70%;
+  padding: 20px;
+}
+
+
+/* Logo */
+
+.logo {
+    font-family: 'Lobster', cursive;
+    font-size: 42px;
+    color: #B5354E;
+    white-space: nowrap;
+    transition: transform 0.3s ease;
+    text-decoration: none;   /* elimină sublinierea */
+    cursor: pointer;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+/* Meniu centrat */
+.nav-links {
+    display: flex;
+    flex: 1;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-image: url('../assets/home.jpg'); /* Calea către imagine */
-    background-size: cover; /* Imaginea acoperă întreaga pagină */
-    background-position: center; /* Centrează imaginea */
-    background-repeat: no-repeat; /* Evită repetarea imaginii */
-    color: #ffffff; /* Text alb pentru contrast */
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #B5354E;           /* rozul aplicației */
+    transform: scale(1.1);    /* mărire ușoară */
+}
+
+/* Dreapta: profil și logout */
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+}
+
+.deposit-button {
+    background-color: #eee;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-details {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+}
+
+.avatar {
+    background-color: #800000;
+    color: white;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+}
+
+.home-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px); /* scade înălțimea navbar-ului */
     text-align: center;
 }
 
-/* Stilizează titlul */
-.home-container h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Umbră pentru text */
-}
-
-/* Stilizează link-ul pentru admin */
-.admin-link {
-    margin-bottom: 20px;
-}
-
-.admin-link a {
-    color: #ff0000; /* Roșu pentru link */
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.2); /* Fundal semi-transparent */
-    border-radius: 5px;
-    transition: background 0.3s ease;
-}
-
-.admin-link a:hover {
-    background: rgba(255, 255, 255, 0.4);
-}
-
-/* Stilizează butonul de logout */
-.logout-button {
-    padding: 10px 20px;
-    background: #ff0000; /* Roșu pentru buton */
-    border: none;
-    border-radius: 5px;
-    color: #ffffff; /* Text alb pe buton */
-    font-size: 16px;
-    font-weight: bold;
+.pariaza-titlu {
+    font-size: 4rem;
+    color: #000;
     cursor: pointer;
-    transition: background 0.3s ease;
+    font-weight: bold;
+    animation: floatText 3s ease-in-out infinite;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+.pariaza-titlu:hover {
+    transform: scale(1.20);
 }
 
-.logout-button:hover {
-    background: #000000; /* Negru la hover */
+/* Animația de plutire sus-jos */
+@keyframes floatText {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(15px);
+    }
 }
+

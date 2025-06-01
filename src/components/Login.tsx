@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { login, register } from '../services/authService';
 import '../design/Login.css';
 
+
+
 const Login: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -15,6 +17,7 @@ const Login: React.FC = () => {
     const handleLogin = async () => {
         try {
             await login(username, password);
+            sessionStorage.setItem("username", username);
             setError('');
             navigate('/home');
         } catch (err: any) {
@@ -44,49 +47,51 @@ const Login: React.FC = () => {
         }
     };
 
-    return (
-        <div className="login-container">
-            <h2>{isRegistering ? 'Înregistrare' : 'Logare'}</h2>
-            {error && <p className="error">{error}</p>}
-            {success && <p className="success">{success}</p>}
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Username:</label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Parolă:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                {isRegistering && (
+     return (
+        <div className="login-page">
+            <div className="login-box">
+                <h2>{isRegistering ? 'CREEAZĂ-ȚI CONT!' : 'INTRĂ ÎN CONT ȘI JOACĂ!'}</h2>
+                {error && <p className="error">{error}</p>}
+                {success && <p className="success">{success}</p>}
+                <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Email:</label>
+                        <label>Nume de utilizator:</label>
                         <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                             required
                         />
                     </div>
-                )}
-                <button type="submit">{isRegistering ? 'Înregistrează-te' : 'Loghează-te'}</button>
-            </form>
-            <button
-                className="toggle-button"
-                onClick={() => setIsRegistering(!isRegistering)}
-            >
-                {isRegistering ? 'Ai deja un cont? Loghează-te' : 'Nu ai cont? Înregistrează-te'}
-            </button>
+                    <div className="form-group">
+                        <label>Parolă:</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    {isRegistering && (
+                        <div className="form-group">
+                            <label>Email:</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                    )}
+                    <button type="submit">{isRegistering ? 'Înregistrează-te' : 'Loghează-te'}</button>
+                </form>
+                <button
+                    className="toggle-link"
+                    onClick={() => setIsRegistering(!isRegistering)}
+                >
+                    {isRegistering ? 'Ai deja un cont? Loghează-te' : 'Nu ai cont? Înregistrează-te'}
+                </button>
+            </div>
         </div>
     );
 };

@@ -92,8 +92,101 @@ const CreateTicket: React.FC = () => {
         navigate('/home');
     };
 
+    // return (
+    //     <div className="create-ticket-container">
+    //         <div className="ticket-form">
+    //             <h2>Creare Bilet</h2>
+    //             {error && <p className="error">{error}</p>}
+    //             {success && <p className="success">{success}</p>}
+    //             <form onSubmit={handleCreateTicket}>
+    //                 <div className="form-group">
+    //                     <label>Miză:</label>
+    //                     <input
+    //                         type="number"
+    //                         value={miza}
+    //                         onChange={(e) => setMiza(e.target.value)}
+    //                         required
+    //                         step="0.01"
+    //                     />
+    //                 </div>
+    //                 <div className="selected-cote">
+    //                     <h3>Cote Selectate:</h3>
+    //                     {selectedCote.length === 0 ? (
+    //                         <p>Nicio cotă selectată.</p>
+    //                     ) : (
+    //                         <ul>
+    //                             {selectedCote.map((cota) => (
+    //                                 <li key={cota.id}>
+    //                                     {cota.descriere}: {cota.valoare}
+    //                                 </li>
+    //                             ))}
+    //                         </ul>
+    //                     )}
+    //                 </div>
+    //                 <div className="action-buttons">
+    //                     <button type="submit">Creează Bilet</button>
+    //                     <button type="button" onClick={handleInapoi}>Înapoi</button>
+    //                 </div>
+    //             </form>
+    //         </div>
+    //         <div className="matches-list">
+    //             <h2>Meciuri Disponibile</h2>
+    //             {meciuri.map((meci) => (
+    //                 <div key={meci.id} className="match-item">
+    //                     <h3>{meci.echipaAcasa} vs {meci.echipaDeplasare}</h3>
+    //                     <p>Competiție: {meci.competitie}</p>
+    //                     <p>Data: {new Date(meci.dataMeci).toLocaleString()}</p>
+    //                     <div className="cote">
+    //                         {coteByMeci[meci.id]?.length > 0 ? (
+    //                             coteByMeci[meci.id].map((cota) => (
+    //                                 <button
+    //                                     key={cota.id}
+    //                                     onClick={() => handleAddCota(cota)}
+    //                                     disabled={cota.blocat}
+    //                                     style={{ opacity: cota.blocat ? 0.5 : 1 }}
+    //                                 >
+    //                                     {cota.descriere} ({cota.valoare})
+    //                                 </button>
+    //                             ))
+    //                         ) : (
+    //                             <p>Nu există cote disponibile pentru acest meci.</p>
+    //                         )}
+    //                     </div>
+    //                 </div>
+    //             ))}
+    //         </div>
+    //     </div>
+    // );
     return (
-        <div className="create-ticket-container">
+    <div className="create-ticket-container">
+        <div className="create-ticket-layout">
+            <div className="matches-list">
+                <h2>Meciuri Disponibile</h2>
+                {meciuri.map((meci) => (
+                    <div key={meci.id} className="match-item">
+                        <h3>{meci.echipaAcasa} vs {meci.echipaDeplasare}</h3>
+                        <p>Competiție: {meci.competitie}</p>
+                        <p>Data: {new Date(meci.dataMeci).toLocaleString()}</p>
+                        <div className="cote">
+                            {coteByMeci[meci.id]?.length > 0 ? (
+                                coteByMeci[meci.id].map((cota) => (
+                                    <button
+                                        key={cota.id}
+                                        onClick={() => handleAddCota(cota)}
+                                        disabled={cota.blocat}
+                                        style={{ opacity: cota.blocat ? 0.5 : 1 }}
+                                    >
+                                        {cota.descriere} ({cota.valoare})
+                                    </button>
+                                ))
+                            ) : (
+                                <p>Nu există cote disponibile pentru acest meci.</p>
+                            )}
+                        </div>
+                    </div>
+                ))}
+            </div>
+
             <div className="ticket-form">
                 <h2>Creare Bilet</h2>
                 {error && <p className="error">{error}</p>}
@@ -129,34 +222,10 @@ const CreateTicket: React.FC = () => {
                     </div>
                 </form>
             </div>
-            <div className="matches-list">
-                <h2>Meciuri Disponibile</h2>
-                {meciuri.map((meci) => (
-                    <div key={meci.id} className="match-item">
-                        <h3>{meci.echipaAcasa} vs {meci.echipaDeplasare}</h3>
-                        <p>Competiție: {meci.competitie}</p>
-                        <p>Data: {new Date(meci.dataMeci).toLocaleString()}</p>
-                        <div className="cote">
-                            {coteByMeci[meci.id]?.length > 0 ? (
-                                coteByMeci[meci.id].map((cota) => (
-                                    <button
-                                        key={cota.id}
-                                        onClick={() => handleAddCota(cota)}
-                                        disabled={cota.blocat}
-                                        style={{ opacity: cota.blocat ? 0.5 : 1 }}
-                                    >
-                                        {cota.descriere} ({cota.valoare})
-                                    </button>
-                                ))
-                            ) : (
-                                <p>Nu există cote disponibile pentru acest meci.</p>
-                            )}
-                        </div>
-                    </div>
-                ))}
-            </div>
         </div>
-    );
+    </div>
+);
+
 };
 
 export default CreateTicket;
