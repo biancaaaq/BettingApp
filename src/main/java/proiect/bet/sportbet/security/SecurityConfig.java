@@ -57,11 +57,10 @@ public class SecurityConfig {
                 .requestMatchers("/detalii-bilete/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/grupuri-private/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/rol-utilizatori/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/promotii/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/cereri-autoexcludere/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/cote/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/meciuri/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/balanta/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers("/promotii/**", "/meciuri/**").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session

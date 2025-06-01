@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import proiect.bet.sportbet.models.Utilizator;
 import proiect.bet.sportbet.repository.UtilizatorRepository;
 import proiect.bet.sportbet.security.JwtUtil;
+// import proiect.bet.sportbet.auth.AuthRequest;
+// import proiect.bet.sportbet.auth.AuthResponse;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -93,47 +95,47 @@ public class AuthController {
     }
 }
 
-class AuthRequest {
-    private String username;
-    private String password;
-    private String email;
+// class AuthRequest {
+//     private String username;
+//     private String password;
+//     private String email;
 
-    public AuthRequest() {
-    }
+//     public AuthRequest() {
+//     }
 
-    public String getUsername() {
-        return username;
-    }
+//     public String getUsername() {
+//         return username;
+//     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+//     public void setUsername(String username) {
+//         this.username = username;
+//     }
 
-    public String getPassword() {
-        return password;
-    }
+//     public String getPassword() {
+//         return password;
+//     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//     public void setPassword(String password) {
+//         this.password = password;
+//     }
 
-    public String getEmail() {
-        return email;
-    }
+//     public String getEmail() {
+//         return email;
+//     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-}
+//     public void setEmail(String email) {
+//         this.email = email;
+//     }
+// }
 
-class AuthResponse {
-    private final String token;
+// class AuthResponse {
+//     private final String token;
 
-    public AuthResponse(String token) {
-        this.token = token;
-    }
+//     public AuthResponse(String token) {
+//         this.token = token;
+//     }
 
-    public String getToken() {
-        return token;
-    }
-}
+//     public String getToken() {
+//         return token;
+//     }
+// }

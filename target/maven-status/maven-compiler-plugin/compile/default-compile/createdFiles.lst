@@ -1,11 +1,13 @@
 proiect\bet\sportbet\service\BalantaService.class
 proiect\bet\sportbet\models\GrupPrivat.class
+proiect\bet\sportbet\auth\AuthResponse.class
 proiect\bet\sportbet\controller\UtilizatorController.class
 proiect\bet\sportbet\service\RolUtilizatorService.class
 proiect\bet\sportbet\models\Balanta.class
 proiect\bet\sportbet\controller\BalantaController.class
 proiect\bet\sportbet\models\Tranzactie$TipTranzactie.class
 proiect\bet\sportbet\controller\GrupPrivatController.class
+proiect\bet\sportbet\controller\AutoexcludereController.class
 proiect\bet\sportbet\controller\MeciController.class
 proiect\bet\sportbet\models\DetaliuBilet.class
 proiect\bet\sportbet\repository\CerereAutoexcludereRepository.class
@@ -19,6 +21,8 @@ proiect\bet\sportbet\repository\PromotieRepository.class
 proiect\bet\sportbet\models\Utilizator$Rol.class
 proiect\bet\sportbet\models\Cota.class
 proiect\bet\sportbet\controller\BiletController.class
+proiect\bet\sportbet\security\SecurityConfig.class
+proiect\bet\sportbet\security\JwtUtil.class
 proiect\bet\sportbet\service\DetaliuBiletService.class
 proiect\bet\sportbet\controller\HelloWorldController.class
 proiect\bet\sportbet\service\MeciService.class
@@ -26,6 +30,7 @@ proiect\bet\sportbet\models\Tranzactie.class
 proiect\bet\sportbet\repository\UtilizatorRepository.class
 proiect\bet\sportbet\service\UtilizatorService.class
 proiect\bet\sportbet\models\RolUtilizator.class
+proiect\bet\sportbet\security\JwtUserDetailsService.class
 proiect\bet\sportbet\repository\GrupPrivatRepository.class
 proiect\bet\sportbet\SportbetApplication.class
 proiect\bet\sportbet\repository\BiletRepository.class
@@ -34,6 +39,9 @@ proiect\bet\sportbet\repository\TranzactieRepository.class
 proiect\bet\sportbet\models\Bilet$Status.class
 proiect\bet\sportbet\controller\RolUtilizatorController.class
 proiect\bet\sportbet\controller\DetaliuBiletController.class
+proiect\bet\sportbet\auth\AuthRequest.class
+proiect\bet\sportbet\security\JwtRequestFilter.class
+proiect\bet\sportbet\auth\AuthController.class
 proiect\bet\sportbet\repository\CotaRepository.class
 proiect\bet\sportbet\models\Utilizator.class
 proiect\bet\sportbet\service\GrupPrivatService.class
