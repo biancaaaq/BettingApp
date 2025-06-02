@@ -65,7 +65,8 @@ const Home: React.FC = () => {
                          < Link to="/login" className="pariaza-titlu" >Pariază acum!</Link>
                        </div> )}
                                               <div>
-                       <TicketSidebar selectedCote={selectedCote} onCreate={handleCreate} />
+                       <TicketSidebar selectedCote={selectedCote} onClear={() => setSelectedCote([])} />
+
 </div>
                        </div>
 

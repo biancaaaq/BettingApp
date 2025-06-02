@@ -241,7 +241,8 @@ const Matches: React.FC = () => {
 
 
       <div>
-         <TicketSidebar selectedCote={selectedCote} onCreate={handleCreate}/>
+         <TicketSidebar selectedCote={selectedCote} onClear={() => setSelectedCote([])} />
+
        </div>
      </div>
    );
