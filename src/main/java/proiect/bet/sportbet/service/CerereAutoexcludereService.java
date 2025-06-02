@@ -47,4 +47,8 @@ public class CerereAutoexcludereService {
             throw new RuntimeException("Cererea de autoexcludere cu ID-ul " + id + " nu a fost găsită.");
         }
     }
+
+    public Optional<CerereAutoexcludere> getCerereAprobataByUtilizatorId(Long id) {
+        return cerereAutoexcludereRepository.findByUtilizatorIdAndAprobatTrue(id);
+    }
 }

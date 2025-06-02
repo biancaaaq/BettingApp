@@ -7,14 +7,11 @@ proiect\bet\sportbet\models\Balanta.class
 proiect\bet\sportbet\controller\BalantaController.class
 proiect\bet\sportbet\models\Tranzactie$TipTranzactie.class
 proiect\bet\sportbet\controller\GrupPrivatController.class
-proiect\bet\sportbet\controller\AutoexcludereController.class
 proiect\bet\sportbet\controller\MeciController.class
 proiect\bet\sportbet\models\DetaliuBilet.class
-proiect\bet\sportbet\repository\CerereAutoexcludereRepository.class
 proiect\bet\sportbet\service\PromotieService.class
 proiect\bet\sportbet\controller\TranzactieController.class
 proiect\bet\sportbet\models\Promotie.class
-proiect\bet\sportbet\service\CerereAutoexcludereService.class
 proiect\bet\sportbet\service\TranzactieService.class
 proiect\bet\sportbet\repository\MeciRepository.class
 proiect\bet\sportbet\repository\PromotieRepository.class
