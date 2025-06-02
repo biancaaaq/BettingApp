@@ -105,6 +105,7 @@ import Matches from './components/Matches';
 import LiveOdds from './components/LiveOdds';
 import Layout from './components/Layout';
 import { BetSlipProvider } from './context/BetSlipContext';
+import ContulMeu from './components/ContulMeu';
 
 
 const App: React.FC = () => {
@@ -123,6 +124,7 @@ const App: React.FC = () => {
                 <Route path="/bilete/mele" element={<Layout><PrivateRoute><BileteMele /></PrivateRoute></Layout>} />
                 <Route path="/tranzactii" element={<Layout><PrivateRoute><Tranzactii /></PrivateRoute></Layout>} />
                 <Route path="/autoexcludere" element={<Layout><PrivateRoute><Autoexcludere /></PrivateRoute></Layout>} />
+                 <Route path="/contul-meu" element={<Layout><PrivateRoute><ContulMeu /></PrivateRoute></Layout>} />
                 <Route path="/cont-autoexclus" element={<PrivateRoute><ContAutoexclus /></PrivateRoute>} />
                 <Route path="/admin" element={<Layout><PrivateRoute><AdminPanel /></PrivateRoute></Layout>} />
                 <Route path="/admin/add-utilizator" element={<PrivateRoute><AddUtilizator /></PrivateRoute>} />

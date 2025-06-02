@@ -24,8 +24,9 @@ const Navbar: React.FC = () => {
         <Link to="/meciuri">Meciuri</Link>
         <Link to="/live">Cote Live</Link>
         <Link to="/bilete/mele">Biletele Mele</Link>
-        <Link to="/tranzactii">Tranzacții</Link>
-        <Link to="/autoexcludere">Auto-excludere</Link>
+        {/* <Link to="/tranzactii">Tranzacții</Link>
+        <Link to="/autoexcludere">Auto-excludere</Link> */}
+        <Link to="/contul-meu">Contul Meu</Link>
         {role === 'ADMIN' && <Link to="/admin">Admin Panel</Link>}
       </div>
 

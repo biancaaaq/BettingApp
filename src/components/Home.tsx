@@ -4,6 +4,7 @@ import { getRole, logout } from '../services/authService';
 import '../design/Home.css';
 import TicketSidebar from '../components/TicketSidebar';
 import { useState } from 'react';
+import LiveMatchesSidebar from './LiveMatchesSidebar';
 
 const Home: React.FC = () => {
     const token = localStorage.getItem('token');
@@ -37,8 +38,9 @@ const Home: React.FC = () => {
                     <Link to="/meciuri">Meciuri</Link>
                     <Link to="/live">Cote Live</Link>
                     <Link to="/bilete/mele">Biletele Mele</Link>
-                    <Link to="/tranzactii">Tranzacții</Link>
-                    <Link to="/autoexcludere">Auto-excludere</Link>
+                    {/* <Link to="/tranzactii">Tranzacții</Link>
+                    <Link to="/autoexcludere">Auto-excludere</Link> */}
+                    <Link to="/contul-meu">Contul-Meu</Link>
                     {role === 'ADMIN' && <Link to="/admin">Admin Panel</Link>}
                 </div>
                  
@@ -57,6 +59,12 @@ const Home: React.FC = () => {
                 
                  </div>
             </nav>
+            <div className="home-content-layout">
+            {/* Coloana stânga cu meciuri live */}
+                <div className="left-sidebar">
+                    <LiveMatchesSidebar />
+                </div>
+            </div>
 
             {token? (
             <div className="home-content">

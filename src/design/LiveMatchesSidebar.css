@@ -1,0 +1,43 @@
+.live-matches-sidebar {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 300px;
+    background-color: white;
+    border-right: 2px solid #ff0033;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 32px;
+}
+
+.live-matches-sidebar h3 {
+    margin-top: 0;
+    color: #d40032;
+}
+
+.live-matches-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.live-matches-sidebar li {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.live-matches-sidebar li:hover {
+    background-color: #ffe6ec;
+}
+
+.live-matches-sidebar li small {
+    color: #555;
+    display: block;
+    margin-top: 4px;
+}

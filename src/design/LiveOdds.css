@@ -1,0 +1,39 @@
+.live-odds-container {
+    padding: 2rem;
+  }
+  
+  .live-odds-title {
+    color: #B5354E;
+  }
+  
+  .live-odds-empty {
+    margin-top: 1rem;
+    color: gray;
+  }
+  
+   .match-card {
+    background-color: #B5354E;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  } 
+  
+  .match-card h4 {
+    margin-bottom: 1rem;
+  }
+  
+  .odds-row {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .odds-box {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    min-width: 70px;
+    text-align: center;
+    color: white;
+    border: 1px solid white;
+  }
