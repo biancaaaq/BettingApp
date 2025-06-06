@@ -25,7 +25,7 @@ const Home: React.FC = () => {
         navigate('/login');
     };
     const handleGoToCreateTicket = () => {
-        navigate('/bilete/creare');
+        navigate('/meciuri');
     };
 
     return (

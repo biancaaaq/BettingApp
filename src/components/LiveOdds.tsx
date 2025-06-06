@@ -75,7 +75,9 @@ interface Match {
   id: string;
   home_team: string;
   away_team: string;
+  commence_time: string;
   bookmakers: Bookmaker[];
+
 }
 
 const LiveOdds: React.FC = () => {
@@ -105,9 +107,15 @@ const LiveOdds: React.FC = () => {
       ) : (
         <div style={{ display: 'grid', gap: '1rem' }}>
           {matches.map((match) => {
+            const now = new Date();
+            const startTime = new Date(match.commence_time);
+            const minutesPassed = Math.floor((now.getTime() - startTime.getTime()) / 60000);
+            const isLive = minutesPassed >= 0 && minutesPassed <= 120;
+
             const outcomes = match.bookmakers[0]?.markets[0]?.outcomes || [];
             return (
               <div key={match.id} className="match-card">
+                <p><strong>Minut:</strong> {isLive ? `${minutesPassed}'` : 'Încă nu a început'}</p>
                 <h4>{match.home_team} vs {match.away_team}</h4>
                 <div className="odds-row">
                   {outcomes.map((outcome, idx) => (

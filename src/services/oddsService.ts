@@ -10,7 +10,7 @@ export const getLiveOdds = async () => {
     const response = await axios.get(BASE_URL, {
       params: {
         apiKey: API_KEY,
-        regions: 'eu',            // regiune europeană (poți adăuga 'us,uk,eu,au' pentru mai multe)
+        regions: 'au,uk',            // regiune europeană (poți adăuga 'us,uk,eu,au' pentru mai multe)
         markets: 'h2h',           // head-to-head (1X2)
         dateFormat: 'iso',
         oddsFormat: 'decimal'
