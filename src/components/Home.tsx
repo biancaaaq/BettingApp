@@ -38,6 +38,7 @@ const Home: React.FC = () => {
                     <Link to="/meciuri">Meciuri</Link>
                     <Link to="/live">Cote Live</Link>
                     <Link to="/bilete/mele">Biletele Mele</Link>
+                    <Link to="/grupuri">Grupuri</Link>
                     {/* <Link to="/tranzactii">Tranzacții</Link>
                     <Link to="/autoexcludere">Auto-excludere</Link> */}
                     <Link to="/contul-meu">Contul-Meu</Link>

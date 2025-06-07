@@ -1,0 +1,44 @@
+.create-grup-page {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.create-grup-page h2 {
+  margin-bottom: 20px;
+}
+
+.create-grup-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.create-grup-page form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-grup-page form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.create-grup-page form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.create-grup-page form button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-grup-page form button:hover {
+  background-color: #218838;
+}

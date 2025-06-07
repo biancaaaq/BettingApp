@@ -1,0 +1,70 @@
+.grup-details-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.grup-details-page h2 {
+  margin-bottom: 20px;
+}
+
+.grup-info p {
+  margin: 10px 0;
+}
+
+.invite-form {
+  margin-top: 30px;
+}
+
+.invite-form h3 {
+  margin-bottom: 15px;
+}
+
+.invite-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.invite-form form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.invite-form form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.invite-form form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.invite-form form button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.invite-form form button:hover {
+  background-color: #218838;
+}
+
+.grup-details-page button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.grup-details-page button:hover {
+  background-color: #0056b3;
+}

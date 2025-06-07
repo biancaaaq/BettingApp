@@ -1,0 +1,54 @@
+.grupuri-page {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.create-grup-button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.create-grup-button:hover {
+  background-color: #218838;
+}
+
+.grupuri-list, .invitatii-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.grup-card, .invitatie-card {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.grup-card h4 {
+  margin: 0 0 10px;
+}
+
+.grup-card p, .invitatie-card p {
+  margin: 5px 0;
+}
+
+.grup-card button, .invitatie-card button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.grup-card button:hover, .invitatie-card button:hover {
+  background-color: #0056b3;
+}

@@ -20,12 +20,10 @@ const Navbar: React.FC = () => {
       <Link to="/home" className="logo">SportsBetting</Link>
 
       <div className="nav-links">
-        {/* <Link to="/bilete/creare">Creare Bilet</Link> */}
         <Link to="/meciuri">Meciuri</Link>
         <Link to="/live">Cote Live</Link>
         <Link to="/bilete/mele">Biletele Mele</Link>
-        {/* <Link to="/tranzactii">Tranzacții</Link>
-        <Link to="/autoexcludere">Auto-excludere</Link> */}
+        <Link to="/grupuri">Grupuri</Link> {/* Re-adăugat link-ul */}
         <Link to="/contul-meu">Contul Meu</Link>
         {role === 'ADMIN' && <Link to="/admin">Admin Panel</Link>}
       </div>
