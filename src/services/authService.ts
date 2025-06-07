@@ -17,13 +17,20 @@ export const register = async (username: string, password: string, email: string
 };
 
 export const login = async (username: string, password: string): Promise<string> => {
-    const response = await axios.post<AuthResponse>(`${API_URL}/login`, { username, password });
-    const token = response.data.jwt;
-    localStorage.setItem('token', token);
-    const role = getRoleFromToken(token);
-    localStorage.setItem('role', role || '');
-    return token;
+    try {
+        const response = await axios.post<AuthResponse>(`${API_URL}/login`, { username, password });
+        const token = response.data.jwt;
+        localStorage.setItem('token', token);
+        const role = getRoleFromToken(token);
+        localStorage.setItem('role', role || '');
+        return token;
+    } catch (error: any) {
+        console.error('Eroare la login:', error);
+        
+        throw error.response?.data?.message || error.message || 'Eroare necunoscută';
+    }
 };
+
 
 // export const logout = () => {
 //     localStorage.removeItem('token');
