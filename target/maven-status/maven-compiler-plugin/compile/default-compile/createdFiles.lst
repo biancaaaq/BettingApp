@@ -7,11 +7,14 @@ proiect\bet\sportbet\models\Balanta.class
 proiect\bet\sportbet\controller\BalantaController.class
 proiect\bet\sportbet\models\Tranzactie$TipTranzactie.class
 proiect\bet\sportbet\controller\GrupPrivatController.class
+proiect\bet\sportbet\controller\AutoexcludereController.class
 proiect\bet\sportbet\controller\MeciController.class
 proiect\bet\sportbet\models\DetaliuBilet.class
+proiect\bet\sportbet\repository\CerereAutoexcludereRepository.class
 proiect\bet\sportbet\service\PromotieService.class
 proiect\bet\sportbet\controller\TranzactieController.class
 proiect\bet\sportbet\models\Promotie.class
+proiect\bet\sportbet\service\CerereAutoexcludereService.class
 proiect\bet\sportbet\service\TranzactieService.class
 proiect\bet\sportbet\repository\MeciRepository.class
 proiect\bet\sportbet\repository\PromotieRepository.class
@@ -29,6 +32,7 @@ proiect\bet\sportbet\service\UtilizatorService.class
 proiect\bet\sportbet\models\RolUtilizator.class
 proiect\bet\sportbet\security\JwtUserDetailsService.class
 proiect\bet\sportbet\repository\GrupPrivatRepository.class
+proiect\bet\sportbet\controller\ContController.class
 proiect\bet\sportbet\SportbetApplication.class
 proiect\bet\sportbet\repository\BiletRepository.class
 proiect\bet\sportbet\repository\RolUtilizatorRepository.class
@@ -37,6 +41,7 @@ proiect\bet\sportbet\models\Bilet$Status.class
 proiect\bet\sportbet\controller\RolUtilizatorController.class
 proiect\bet\sportbet\controller\DetaliuBiletController.class
 proiect\bet\sportbet\auth\AuthRequest.class
+proiect\bet\sportbet\controller\ContController$ContDTO.class
 proiect\bet\sportbet\security\JwtRequestFilter.class
 proiect\bet\sportbet\auth\AuthController.class
 proiect\bet\sportbet\repository\CotaRepository.class
