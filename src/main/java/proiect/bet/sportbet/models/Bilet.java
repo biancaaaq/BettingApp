@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "bilete")
 public class Bilet {
@@ -17,6 +19,7 @@ public class Bilet {
 
     @ManyToOne
     @JoinColumn(name = "id_grup")
+    @JsonBackReference
     private GrupPrivat grup;
 
     @Column(name = "cota_totala", nullable = false)

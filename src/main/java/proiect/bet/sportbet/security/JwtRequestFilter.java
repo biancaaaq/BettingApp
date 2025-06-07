@@ -58,25 +58,25 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
-            if (jwtUtil.validateToken(jwtToken, userDetails)) {
-                // Verifică dacă utilizatorul este auto-exclus
-                if (!userDetails.isEnabled()) {
-                    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-                    response.getWriter().write("Contul este autoexclus");
-                    return;
-                }
-
-                // Log autoritățile pentru depanare
-                System.out.println("Autorități utilizator " + username + ": " + userDetails.getAuthorities());
-
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                usernamePasswordAuthenticationToken
-                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+    UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
+    System.out.println("Încărcare utilizator: " + username + ", Activ: " + userDetails.isEnabled());
+    if (jwtUtil.validateToken(jwtToken, userDetails)) {
+            if (!userDetails.isEnabled()) {
+                System.out.println("Contul utilizatorului " + username + " este autoexclus");
+                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                response.getWriter().write("Contul este autoexclus");
+                return;
             }
+            System.out.println("Autorități utilizator: " + userDetails.getAuthorities());
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                    new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            usernamePasswordAuthenticationToken
+                    .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        } else {
+            System.out.println("Token invalid pentru utilizator: " + username);
         }
+    }
         chain.doFilter(request, response);
     }
 }

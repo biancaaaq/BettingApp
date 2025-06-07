@@ -1,5 +1,6 @@
 package proiect.bet.sportbet.security;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,18 +24,16 @@ public class JwtUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("Încărcare utilizator: " + username);
         Utilizator utilizator = utilizatorRepository.findByNumeUtilizator(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Utilizatorul nu a fost găsit: " + username));
-        System.out.println("Utilizator găsit: " + utilizator.getNumeUtilizator() + ", parola: " + utilizator.getParola() + ", rol: " + utilizator.getRol());
+            .orElseThrow(() -> new UsernameNotFoundException("Utilizatorul nu a fost găsit: " + username));
+        System.out.println("Utilizator găsit: " + utilizator.getNumeUtilizator() + ", rol: " + utilizator.getRol());
         String role = "ROLE_" + utilizator.getRol().toString();
         System.out.println("Rol setat: " + role);
         return new User(
-                utilizator.getNumeUtilizator(),
-                utilizator.getParola(),
-                utilizator.getActiv(), // isEnabled
-                true, // isAccountNonExpired
-                true, // isCredentialsNonExpired
-                true, // isAccountNonLocked
-                Collections.singletonList(new org.springframework.security.core.authority.SimpleGrantedAuthority(role))
+            utilizator.getNumeUtilizator(),
+            utilizator.getParola(),
+            utilizator.getActiv(),
+            true, true, true,
+            Collections.singletonList(new SimpleGrantedAuthority(role))
         );
     }
 }
