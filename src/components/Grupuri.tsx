@@ -27,7 +27,6 @@ const Grupuri: React.FC = () => {
       }
       try {
         const grupuriResponse = await api.get('/grupuri-private/mele');
-        console.log('Răspuns API grupuri:', grupuriResponse.data);
         const data = Array.isArray(grupuriResponse.data) ? grupuriResponse.data : [];
         setGrupuri(data);
         const invitatiiResponse = await api.get('/grupuri-private/invitatii');
@@ -82,59 +81,63 @@ const Grupuri: React.FC = () => {
 
   return (
     <div className="grupuri-page">
-      <h2 className="grupuri-title">Grupurile Mele</h2>
+      <div className="grupuri-header">
+  <h2 className="grupurile-mele-title">Grupurile Mele</h2>
+  <button onClick={handleCreateGrup} className="create-grup-button">Creează Grup Nou</button>
 
-      <div className="grupuri-layout">
-        {/* Secțiunea pentru acțiuni și mesaje */}
-        <div className="grupuri-actions">
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          {success && <p style={{ color: 'green' }}>{success}</p>}
-          <button onClick={handleCreateGrup} className="create-grup-button">Creează Grup Nou</button>
-        </div>
+  {error && <p style={{ color: 'red' }}>{error}</p>}
+  {success && <p style={{ color: 'green' }}>{success}</p>}
+</div>
 
-        {/* Lista de grupuri */}
-        <div className="grupuri-list">
+
+      <div className="grupuri-columns">
+        {/* Coloana 1: Grupuri */}
+        <div className="grupuri-col">
           <h3>Grupuri în care sunt membru</h3>
-          {grupuri.length === 0 ? (
-            <p>Nu ești membru în niciun grup.</p>
-          ) : (
-            grupuri.map(grup => (
-              <div key={grup.id} className="grup-card">
-                <h3>{grup.nume}</h3>
-                <p><strong>Admin:</strong> {grup.admin?.numeUtilizator}</p>
-                <p><strong>Miză comună:</strong> {grup.mizaComuna} RON</p>
-                <p><strong>Status:</strong> {grup.status}</p>
-                {isAdmin(grup) && (
-                  <div className="invite-form">
-                    <input
-                      type="text"
-                      value={inviteUsername[grup.id] || ''}
-                      onChange={(e) => setInviteUsername(prev => ({ ...prev, [grup.id]: e.target.value }))}
-                      placeholder="Nume utilizator"
-                    />
-                    <button onClick={() => handleInvite(grup.id)}>Invită</button>
-                  </div>
-                )}
-                <button onClick={() => navigate(`/grupuri/${grup.id}`)}>Vezi detalii</button>
-              </div>
-            ))
-          )}
+          <div className="grupuri-list">
+            {grupuri.length === 0 ? (
+              <p>Nu ești membru în niciun grup.</p>
+            ) : (
+              grupuri.map(grup => (
+                <div key={grup.id} className="grup-card">
+                  <h3>{grup.nume}</h3>
+                  <p><strong>Admin:</strong> {grup.admin?.numeUtilizator}</p>
+                  <p><strong>Miză comună:</strong> {grup.mizaComuna} RON</p>
+                  <p><strong>Status:</strong> {grup.status}</p>
+                  {isAdmin(grup) && (
+                    <div className="invite-form">
+                      <input
+                        type="text"
+                        value={inviteUsername[grup.id] || ''}
+                        onChange={(e) => setInviteUsername(prev => ({ ...prev, [grup.id]: e.target.value }))}
+                        placeholder="Nume utilizator"
+                      />
+                      <button onClick={() => handleInvite(grup.id)}>Invită</button>
+                    </div>
+                  )}
+                  <button onClick={() => navigate(`/grupuri/${grup.id}`)}>Vezi detalii</button>
+                </div>
+              ))
+            )}
+          </div>
         </div>
 
-        {/* Lista de invitații */}
-        <div className="invitatii-list">
+        {/* Coloana 2: Invitații */}
+        <div className="grupuri-col">
           <h3>Invitații primite</h3>
-          {invitatii.length === 0 ? (
-            <p>Nu ai invitații în așteptare.</p>
-          ) : (
-            invitatii.map(invitatie => (
-              <div key={invitatie.id} className="invitatie-card">
-                <p><strong>Grup:</strong> {invitatie.grup.nume}</p>
-                <button onClick={() => handleAcceptInvitatie(invitatie.id)}>Acceptă</button>
-                <button onClick={() => handleRejectInvitatie(invitatie.id)}>Refuză</button>
-              </div>
-            ))
-          )}
+          <div className="invitatii-list">
+            {invitatii.length === 0 ? (
+              <p>Nu ai invitații în așteptare.</p>
+            ) : (
+              invitatii.map(invitatie => (
+                <div key={invitatie.id} className="invitatie-card">
+                  <p><strong>Grup:</strong> {invitatie.grup.nume}</p>
+                  <button onClick={() => handleAcceptInvitatie(invitatie.id)}>Acceptă</button>
+                  <button onClick={() => handleRejectInvitatie(invitatie.id)}>Refuză</button>
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { getToken } from '../services/authService';
+import '../design/Tranzactii.css';
 
 interface Tranzactie {
     id: number;

@@ -1,17 +1,31 @@
 .create-grup-page {
-  padding: 20px;
-  max-width: 600px;
-  margin: 0 auto;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #ffe6f0, #ffffff);
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .create-grup-page h2 {
-  margin-bottom: 20px;
+  font-size: 32px;
+  color: #B5354E;
+  font-family: 'Lobster', cursive;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .create-grup-page form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
 .create-grup-page form div {
@@ -20,25 +34,37 @@
 }
 
 .create-grup-page form label {
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
 }
 
 .create-grup-page form input {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fdfdfd;
+  transition: border-color 0.3s ease;
+}
+
+.create-grup-page form input:focus {
+  outline: none;
+  border-color: #B5354E;
 }
 
 .create-grup-page form button {
-  background-color: #28a745;
+  background-color: #B5354E;
   color: white;
-  padding: 10px;
+  padding: 12px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .create-grup-page form button:hover {
-  background-color: #218838;
+  background-color: #cc0055;
 }

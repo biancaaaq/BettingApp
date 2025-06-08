@@ -1,170 +1,133 @@
-/* Resetare margini implicite pentru întreaga pagină */
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: auto;
-}
-
-/* Stilizează containerul principal al paginii Tranzactii */
+/* Fundal complet */
 .tranzactii-container {
-    display: flex;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #ff0000, #333333); /* Gradient roșu-negru */
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffe6f0, #ffffff);
+  padding: 60px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
 }
 
-/* Stilizează formularul de tranzactii (stânga) */
+/* Cardul cu formular */
 .tranzactii-form {
-    flex: 1;
-    background: #ffffff; /* Alb pentru formular */
-    padding: 40px;
-    border-right: 2px solid #000000; /* Bordură neagră */
-    color: #000000;
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
 }
 
 .tranzactii-form h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #ff0000; /* Roșu pentru titlu */
-    font-family: 'Arial', sans-serif;
+  font-size: 28px;
+  color: #B5354E;
+  font-family: 'Lobster', cursive;
+  margin-bottom: 20px;
 }
 
 .tranzactii-form h3 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #000000;
-    font-family: 'Arial', sans-serif;
-}
-
-.tranzactii-form .error {
-    color: #ff0000; /* Roșu pentru eroare */
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
-
-.tranzactii-form .success {
-    color: #ff0000; /* Roșu pentru mesaj de succes */
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 14px;
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #444;
 }
 
 .form-group {
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #000000; /* Negru pentru etichete */
-    font-weight: bold;
-    font-family: 'Arial', sans-serif;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
 }
 
 .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #000000; /* Bordură neagră */
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-    background: #ffffff; /* Fundal alb pentru câmpuri */
-    color: #000000; /* Text negru în câmpuri */
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: #ff0000; /* Bordură roșie la focus */
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
 .action-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 15px;
 }
 
 .action-buttons button {
-    padding: 12px 24px;
-    background: #ff0000; /* Roșu pentru buton */
-    border: none;
-    border-radius: 5px;
-    color: #ffffff; /* Text alb pe buton */
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
+  background-color: #B5354E;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .action-buttons button:hover {
-    background: #000000; /* Negru la hover */
+  background-color: #cc0055;
 }
 
-/* Stilizează lista de tranzactii (dreapta) */
+/* Lista tranzacții */
 .tranzactii-list {
-    flex: 1;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.9); /* Fundal semi-transparent alb */
-    color: #000000;
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  width: 100%;
 }
 
 .tranzactii-list h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #ff0000; /* Roșu pentru titlu */
-    font-family: 'Arial', sans-serif;
+  font-size: 26px;
+  color: #B5354E;
+  font-family: 'Lobster', cursive;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-/* Stilizează tabelul de tranzacții */
 .tranzactii-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.tranzactii-table th, .tranzactii-table td {
-    padding: 10px;
-    border: 1px solid #000000; /* Bordură neagră */
-    text-align: center;
+.tranzactii-table th,
+.tranzactii-table td {
+  border: 1px solid #eee;
+  padding: 12px 16px;
+  text-align: center;
 }
 
 .tranzactii-table th {
-    background: #ff0000; /* Roșu pentru header */
-    color: #ffffff; /* Text alb */
-    font-weight: bold;
+  background-color: #f9f9f9;
+  color: #444;
+  font-weight: bold;
 }
 
 .tranzactii-table td {
-    background: #ffffff; /* Alb pentru celule */
-    color: #000000;
+  background-color: #fff;
+  color: #555;
 }
 
-.tranzactii-table tr:nth-child(even) td {
-    background: #f0f0f0; /* Gri deschis pentru rânduri pare */
+/* Mesaje */
+.error {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.tranzactii-list p {
-    text-align: center;
-    color: #000000;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .tranzactii-container {
-        flex-direction: column;
-    }
-
-    .tranzactii-form, .tranzactii-list {
-        flex: none;
-        width: 100%;
-        border: none;
-    }
-
-    .tranzactii-table {
-        font-size: 14px;
-    }
-
-    .tranzactii-table th, .tranzactii-table td {
-        padding: 8px;
-    }
+.success {
+  color: green;
+  font-weight: bold;
+  margin-bottom: 10px;
 }

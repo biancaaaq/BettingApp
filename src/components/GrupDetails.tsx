@@ -35,7 +35,6 @@ const GrupDetails: React.FC = () => {
       setSuccess(`Utilizatorul ${usernameInvitat} a fost invitat cu succes!`);
       setError('');
       setUsernameInvitat('');
-      // Reîncarcă grupul după invitare
       const response = await api.get(`/grupuri-private/${id}`);
       setGrup(response.data);
     } catch (err: any) {
@@ -55,7 +54,6 @@ const GrupDetails: React.FC = () => {
       <h2 className="grup-details-title">{grup.nume}</h2>
 
       <div className="grup-details-layout">
-        {/* Secțiunea pentru informații generale */}
         <div className="grup-info">
           {error && <p style={{ color: 'red' }}>{error}</p>}
           {success && <p style={{ color: 'green' }}>{success}</p>}
@@ -64,7 +62,6 @@ const GrupDetails: React.FC = () => {
           <p><strong>Status:</strong> {grup.status}</p>
         </div>
 
-        {/* Lista de membri */}
         <div className="grup-members">
           <h3>Membri</h3>
           {grup.membri && grup.membri.length > 0 ? (
@@ -78,7 +75,6 @@ const GrupDetails: React.FC = () => {
           )}
         </div>
 
-        {/* Lista de bilete */}
         <div className="grup-bilete">
           <h3>Pariuri/Bilete</h3>
           {grup.bilete && grup.bilete.length > 0 ? (
@@ -94,7 +90,6 @@ const GrupDetails: React.FC = () => {
           )}
         </div>
 
-        {/* Formular de invitare (doar pentru admin) */}
         {isAdmin && (
           <div className="invite-form">
             <h3>Invită un utilizator</h3>
@@ -114,8 +109,10 @@ const GrupDetails: React.FC = () => {
             </form>
           </div>
         )}
+      </div>
 
-        <button onClick={() => navigate('/grupuri')}>Înapoi la grupuri</button>
+      <div className="centered-button-wrapper">
+        <button onClick={() => navigate('/grupuri')} className="back-button">Înapoi la grupuri</button>
       </div>
     </div>
   );

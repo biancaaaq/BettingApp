@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../services/authService';
+import '../design/AdminPanel.css';
 
 const AdminPanel: React.FC = () => {
     const navigate = useNavigate();
@@ -52,7 +53,7 @@ const AdminPanel: React.FC = () => {
             <div className="admin-link">
                 <Link to="/admin/add-balanta">Adaugă Balanță</Link>
             </div>
-            <button className="logout-button" onClick={handleLogout}>Logout</button>
+            <button className="logout-button1" onClick={handleLogout}>Logout</button>
         </div>
     );
 };

@@ -1,54 +1,191 @@
 .grupuri-page {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #ffe6f0, #ffffff);
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.grupurile-mele-title {
+  text-align: center;
+  font-size: 36px;
+  color: #B5354E;
+  font-family: 'Lobster', cursive;
+  margin-bottom: 30px;
+}
+
+.grupuri-header {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .create-grup-button {
-  background-color: #28a745;
+  background-color: #B5354E;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .create-grup-button:hover {
-  background-color: #218838;
+  background-color: #cc0055;
 }
 
-.grupuri-list, .invitatii-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+/* 2 coloane flexibile */
+.grupuri-columns {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* O coloană */
+.grupuri-col {
+  flex: 1;
+  min-width: 340px;
+}
+
+/* Titluri coloane */
+.grupuri-col h3 {
+  color: #B5354E;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+/* Listele */
+.grupuri-list,
+.invitatii-list {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
-.grup-card, .invitatie-card {
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Carduri */
+.grup-card,
+.invitatie-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+
+  width: 100%;
+  max-width: 600px; 
+}
+
+
+.grup-card:hover,
+.invitatie-card:hover {
+  transform: scale(1.03);
 }
 
 .grup-card h4 {
-  margin: 0 0 10px;
+  color: #B5354E;
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-.grup-card p, .invitatie-card p {
-  margin: 5px 0;
+.grup-card p,
+.invitatie-card p {
+  font-size: 14px;
+  color: #555;
+  margin: 6px 0;
 }
 
-.grup-card button, .invitatie-card button {
-  background-color: #007bff;
+.grup-card button,
+.invitatie-card button {
+  background-color: #B5354E;
   color: white;
-  padding: 8px 15px;
+  padding: 10px 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  margin-right: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
 }
 
-.grup-card button:hover, .invitatie-card button:hover {
-  background-color: #0056b3;
+.grup-card button:hover,
+.invitatie-card button:hover {
+  background-color: #cc0055;
+}
+
+.invite-form {
+  display: flex;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.invite-form input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Responsive: pe mobil, coloanele devin verticale */
+@media (max-width: 768px) {
+  .grupuri-columns {
+    flex-direction: column;
+  }
+}
+
+.grupuri-columns {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.grupuri-col {
+  flex: 1;
+  min-width: 340px;
+}
+
+.grupuri-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.create-grup-button {
+  margin-top: 10px;
+  background-color: #B5354E;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.create-grup-button:hover {
+  background-color: #cc0055;
+}
+
+.grupuri-list p,
+.invitatii-list p {
+  text-align: center;
+  font-size: 15px;
+  color: #666;
+  padding: 20px 0;
+}
+
+.grupuri-list,
+.invitatii-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrează mesajul */
+  gap: 20px;
+  min-height: 100px;
 }
