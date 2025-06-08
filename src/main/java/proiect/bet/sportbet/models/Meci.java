@@ -28,6 +28,9 @@ public class Meci {
     @Column(nullable = false)
     private boolean blocat = false;
 
+    @Column(nullable = false)
+    private String status;
+
     // Getteri și setteri
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -43,4 +46,6 @@ public class Meci {
     public void setRezultat(String rezultat) { this.rezultat = rezultat; }
     public boolean isBlocat() { return blocat; }
     public void setBlocat(boolean blocat) { this.blocat = blocat; }
+    public void setStatus(String Status){ this.status=Status;}
+    public String getStatus(){return this.status;}
 }

@@ -18,7 +18,6 @@ proiect\bet\sportbet\models\Promotie.class
 proiect\bet\sportbet\service\CerereAutoexcludereService.class
 proiect\bet\sportbet\models\InvitatieGrup$StatusInvitatie.class
 proiect\bet\sportbet\service\TranzactieService.class
-proiect\bet\sportbet\repository\MeciRepository.class
 proiect\bet\sportbet\repository\PromotieRepository.class
 proiect\bet\sportbet\models\Utilizator$Rol.class
 proiect\bet\sportbet\models\Cota.class

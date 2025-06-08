@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proiect.bet.sportbet.models.Meci;
+import proiect.bet.sportbet.service.ApiFootballImporterService;
 import proiect.bet.sportbet.service.MeciService;
 
 import java.util.List;
@@ -16,10 +17,20 @@ import java.util.List;
 @Tag(name = "Meciuri", description = "Operațiuni pentru gestionarea meciurilor")
 public class MeciController {
     private final MeciService meciService;
+    private final ApiFootballImporterService importerService;
 
-    public MeciController(MeciService meciService) {
+    public MeciController(MeciService meciService, ApiFootballImporterService importerService) {
         this.meciService = meciService;
-    }
+        this.importerService = importerService;
+}
+     
+
+    @GetMapping("/importa-api")
+    public ResponseEntity<String> importaMeciuriDinApi() {
+        importerService.importMeciuri();
+        return ResponseEntity.ok("Importul a fost realizat cu succes!");
+}
+
 
     @PostMapping
     @Operation(summary = "Adaugă un meci nou", description = "Creează un meci nou în sistem")
