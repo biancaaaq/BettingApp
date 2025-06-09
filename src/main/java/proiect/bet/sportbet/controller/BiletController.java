@@ -87,6 +87,11 @@ public class BiletController {
                 .map(cota -> cotaRepository.findById(cota.getId())
                         .orElseThrow(() -> new RuntimeException("Cota cu ID-ul " + cota.getId() + " nu a fost găsită")))
                 .collect(Collectors.toList());
+
+        List<Long> meciIds = cote.stream().map(c -> c.getMeci().getId()).toList();
+        if (meciIds.size() != meciIds.stream().distinct().count()) {
+            throw new RuntimeException("Nu poți selecta mai multe cote din același meci.");
+}   
         bilet.setCote(cote);
 
         Bilet savedBilet = biletService.createBilet(bilet);
