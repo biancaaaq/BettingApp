@@ -5,6 +5,7 @@ export interface Cota {
   descriere: string;
   valoare: number;
   blocat: boolean;
+  idMeci: number;
 }
 
 interface BetSlipContextType {
@@ -20,14 +21,17 @@ export const BetSlipProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [cote, setCote] = useState<Cota[]>([]);
 
   const addCota = (cota: Cota) => {
-    if (cote.find(c => c.id === cota.id)) return; // evită duplicatele
-    setCote([...cote, cota]);
+    setCote(prev =>
+      [
+        ...prev.filter(c => c.idMeci !== cota.idMeci), // elimină cota precedentă din același meci
+        cota,
+      ]
+    );
   };
 
   const removeCota = (id: number) => {
-    setCote(cote.filter(c => c.id !== id));
+    setCote(prev => prev.filter(c => c.id !== id));
   };
-
   const clearCote = () => {
     setCote([]);
   };

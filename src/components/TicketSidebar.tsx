@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import '../design/TicketsSidebar.css';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
-import { Cota, GrupPrivat } from '../types';
+import {  GrupPrivat } from '../types';
 import { getToken } from '../services/authService';
+import { Cota } from '../context/BetSlipContext';
 
 interface Props {
   selectedCote: Cota[];
@@ -89,10 +90,14 @@ const TicketSidebar: React.FC<Props> = ({ selectedCote, onClear }) => {
             <p>Nicio cotă selectată.</p>
           ) : (
             <ul>
-              {selectedCote.map((cota) => (
-                <li key={cota.id}>{cota.descriere} ({cota.valoare})</li>
-              ))}
-            </ul>
+          {selectedCote.map((cota, index) => (
+            <li key={`${cota.id}-${cota.idMeci}-${index}`}>
+            {cota.descriere} ({cota.valoare})
+            </li>
+))}
+
+</ul>
+
           )}
         </div>
 

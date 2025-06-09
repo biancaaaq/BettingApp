@@ -1,9 +1,4 @@
-export interface Cota {
-  id: number;
-  descriere: string;
-  valoare: number;
-  blocat: boolean;
-}
+
 
 export interface Utilizator {
   id: number;

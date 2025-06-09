@@ -6,6 +6,8 @@ import TicketSidebar from '../components/TicketSidebar';
 import AddCota from './AddCota';
 import { useNavigate } from 'react-router-dom';
 import { getToken } from '../services/authService';
+import { Cota } from '../context/BetSlipContext';
+
 
 interface Meci {
   id: number;
@@ -17,12 +19,7 @@ interface Meci {
   blocat: boolean;
 }
 
-interface Cota {
-  id: number;
-  descriere: string;
-  valoare: number;
-  blocat: boolean;
-}
+
 
 
 const Matches: React.FC = () => {
@@ -40,7 +37,9 @@ const Matches: React.FC = () => {
             setError('Această cotă este blocată și nu poate fi selectată.');
             return;
         }
-        setSelectedCote([...selectedCote, cota]);
+        // eliminăm orice cotă deja existentă din același meci
+        setSelectedCote(prev =>
+            [...prev.filter(existing => existing.idMeci !== cota.idMeci), cota]);
     };
     const handleCreateTicket = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -169,7 +168,7 @@ const Matches: React.FC = () => {
                 <span className="cota-descriere">{cota.descriere}</span>
                 <button
                   className="cota-button"
-                 onClick={() => handleAddCota(cota)}
+                 onClick={() => handleAddCota({...cota, idMeci:selectedMatch.id})}
                 disabled={cota.blocat}
                  >
                {cota.valoare}
