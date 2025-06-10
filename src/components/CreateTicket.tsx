@@ -185,13 +185,14 @@ const CreateTicket: React.FC = () => {
                                 {coteByMeci[meci.id]?.length > 0 ? (
                                     coteByMeci[meci.id].map((cota) => (
                                         <button
-                                            key={cota.id}
-                                            onClick={() => handleAddCota({ ...cota, idMeci: meci.id })}
-                                            disabled={cota.blocat}
-                                            style={{ opacity: cota.blocat ? 0.5 : 1 }}
-                                        >
-                                            {cota.descriere} ({cota.valoare})
+                                        key={cota.id}
+                                        onClick={() => !cota.blocat && handleAddCota({ ...cota, idMeci: meci.id })}
+                                        disabled={cota.blocat}
+                                        className={`cota-button ${cota.blocat ? "cota-blocata" : ""}`}
+                                                                                                >
+                                        {cota.descriere} ({cota.valoare})
                                         </button>
+
                                     ))
                                 ) : (
                                     <p>Nu există cote disponibile pentru acest meci.</p>

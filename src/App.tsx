@@ -30,6 +30,8 @@ import ContulMeu from './components/ContulMeu';
 import Grupuri from './components/Grupuri';
 import CreateGrup from './components/CreateGrup';
 import GrupDetails from './components/GrupDetails';
+import GestionareCote from './components/GestionareCote'; // sau calea ta
+
 
 const App: React.FC = () => {
     return (
@@ -65,7 +67,7 @@ const App: React.FC = () => {
                 <Route path="/admin/add-cota" element={<PrivateRoute><AddCota /></PrivateRoute>} />
                 <Route path="/admin/add-meci" element={<PrivateRoute><AddMeci /></PrivateRoute>} />
                 <Route path="/admin/add-balanta" element={<PrivateRoute><AddBalanta /></PrivateRoute>} />
-
+                <Route path="/admin/gestionare-cote" element={<PrivateRoute><GestionareCote /></PrivateRoute>} />
                 {/* Implicit redirect către home */}
                 <Route path="*" element={<Home />} />
             </Routes>

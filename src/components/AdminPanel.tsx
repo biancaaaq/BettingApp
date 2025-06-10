@@ -48,6 +48,9 @@ const AdminPanel: React.FC = () => {
                 <Link to="/admin/add-cota">Adaugă Cotă</Link>
             </div>
             <div className="admin-link">
+                <Link to="/admin/gestionare-cote">Gestionare Cote</Link>
+            </div>
+            <div className="admin-link">
                 <Link to="/admin/add-meci">Adaugă Meci</Link>
             </div>
             <div className="admin-link">

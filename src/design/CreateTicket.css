@@ -24,3 +24,25 @@
     position: sticky;
     top: 30px;
 }
+
+.cota-button {
+    padding: 8px 12px;
+    margin: 4px;
+    border-radius: 6px;
+    background-color: #2563eb; /* albastru normal */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cota-button:hover {
+    background-color: #1d4ed8;
+}
+
+.cota-blocata {
+    background-color: #9ca3af; /* gri */
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.6;
+}
