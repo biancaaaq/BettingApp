@@ -5,10 +5,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import proiect.bet.sportbet.models.Cota;
 import proiect.bet.sportbet.service.CotaService;
+
+
+//import proiect.bet.sportbet.repository.BiletCotaRepository;
 
 import java.util.List;
 
@@ -107,4 +111,23 @@ public class CotaController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PutMapping("/{id}/status")
+    @Operation(summary = "Actualizează statusul unei cote", description = "Setează statusul unei cote: activ, castigator, pierzator și reevaluează biletele afectate")
+    @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Statusul a fost actualizat cu succes"),
+    @ApiResponse(responseCode = "404", description = "Cota nu a fost găsită"),
+    @ApiResponse(responseCode = "403", description = "Acces interzis (necesită rol ADMIN)")
+})
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> actualizeazaStatusCota(
+        @PathVariable Long id,
+        @RequestParam String statusNou) {
+    try {
+        cotaService.actualizeazaStatusCota(id, statusNou);
+        return ResponseEntity.ok("Statusul cotei a fost actualizat și biletele reevaluate.");
+    } catch (RuntimeException e) {
+        return ResponseEntity.badRequest().body("Eroare: " + e.getMessage());
+    }
+}
+
 }

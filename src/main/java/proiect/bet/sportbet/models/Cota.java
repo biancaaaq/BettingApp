@@ -23,6 +23,10 @@ public class Cota {
     @Column(nullable = false)
     private Boolean blocat;
 
+    @Column(name = "status_cota")
+    private String statusCota = "activ";
+
+
     // Constructori
     public Cota() {
     }
@@ -75,6 +79,14 @@ public class Cota {
         this.blocat = blocat;
     }
 
+    public String getStatusCota() {
+    return statusCota;
+    }
+
+    public void setStatusCota(String statusCota) {
+    this.statusCota = statusCota;
+    }
+
     // Equals și hashCode
     @Override
     public boolean equals(Object o) {
@@ -82,26 +94,30 @@ public class Cota {
         if (o == null || getClass() != o.getClass()) return false;
         Cota cota = (Cota) o;
         return Objects.equals(id, cota.id) &&
-               Objects.equals(meci, cota.meci) &&
-               Objects.equals(descriere, cota.descriere) &&
-               Objects.equals(valoare, cota.valoare) &&
-               Objects.equals(blocat, cota.blocat);
+            Objects.equals(meci, cota.meci) &&
+            Objects.equals(descriere, cota.descriere) &&
+            Objects.equals(valoare, cota.valoare) &&
+            Objects.equals(blocat, cota.blocat) &&
+            Objects.equals(statusCota, cota.statusCota);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, meci, descriere, valoare, blocat);
+        return Objects.hash(id, meci, descriere, valoare, blocat, statusCota);
+
     }
 
     // toString
     @Override
     public String toString() {
         return "Cota{" +
-               "id=" + id +
-               ", meci=" + (meci != null ? meci.getId() : null) +
-               ", descriere='" + descriere + '\'' +
-               ", valoare=" + valoare +
-               ", blocat=" + blocat +
-               '}';
+            "id=" + id +
+            ", meci=" + (meci != null ? meci.getId() : null) +
+            ", descriere='" + descriere + '\'' +
+            ", valoare=" + valoare +
+            ", blocat=" + blocat +
+            ", statusCota='" + statusCota + '\'' +
+            '}';
     }
 }

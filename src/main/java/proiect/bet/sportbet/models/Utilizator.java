@@ -34,6 +34,8 @@ public class Utilizator {
         USER, ADMIN
     }
 
+
+
     // Constructori
     public Utilizator() {
     }
@@ -103,6 +105,8 @@ public class Utilizator {
         this.dataCreare = dataCreare;
     }
 
+    
+
     // Equals și hashCode
     @Override
     public boolean equals(Object o) {
@@ -110,12 +114,12 @@ public class Utilizator {
         if (o == null || getClass() != o.getClass()) return false;
         Utilizator that = (Utilizator) o;
         return Objects.equals(id, that.id) &&
-               Objects.equals(numeUtilizator, that.numeUtilizator) &&
-               Objects.equals(parola, that.parola) &&
-               Objects.equals(email, that.email) &&
-               rol == that.rol &&
-               Objects.equals(activ, that.activ) &&
-               Objects.equals(dataCreare, that.dataCreare);
+            Objects.equals(numeUtilizator, that.numeUtilizator) &&
+            Objects.equals(parola, that.parola) &&
+            Objects.equals(email, that.email) &&
+            rol == that.rol &&
+            Objects.equals(activ, that.activ) &&
+            Objects.equals(dataCreare, that.dataCreare);
     }
 
     @Override
