@@ -9,7 +9,7 @@ interface AuthResponse {
 export const register = async (username: string, password: string, email: string): Promise<string> => {
     try {
         const response = await axios.post(`${API_URL}/register`, { username, password, email });
-        return response.data; // Returnează mesajul de succes (ex. "Utilizator înregistrat cu succes!")
+        return response.data; // Returnează mesajul de succes
     } catch (error: any) {
         console.error('Eroare la înregistrare:', error);
         throw error.response?.data || error.message || 'Eroare necunoscută';
@@ -21,31 +21,28 @@ export const login = async (username: string, password: string): Promise<string>
         const response = await axios.post<AuthResponse>(`${API_URL}/login`, { username, password });
         const token = response.data.jwt;
         localStorage.setItem('token', token);
+        localStorage.setItem('username', username); // Salvează username-ul la login
         const role = getRoleFromToken(token);
         localStorage.setItem('role', role || '');
         return token;
     } catch (error: any) {
         console.error('Eroare la login:', error);
-        
         throw error.response?.data?.message || error.message || 'Eroare necunoscută';
     }
 };
 
-
-// export const logout = () => {
-//     localStorage.removeItem('token');
-//     localStorage.removeItem('role');
-    
-// };
 export const logout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("username");
-  localStorage.removeItem("role");
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('role');
 };
-
 
 export const getToken = (): string | null => {
     return localStorage.getItem('token');
+};
+
+export const getUsername = (): string | null => {
+    return localStorage.getItem('username'); // Returnează username-ul salvat
 };
 
 export const getRole = (): string | null => {
@@ -67,4 +64,19 @@ export const getRoleFromToken = (token: string | null): string | null => {
 export const getFullRoleFromToken = (token: string | null): string | null => {
     const role = getRoleFromToken(token);
     return role ? `ROLE_${role}` : null;
+};
+
+// Nouă funcție pentru a extrage username-ul din token
+export const getUsernameFromToken = (token: string | null): string | null => {
+    if (!token) {
+        console.warn('Niciun token găsit pentru decodare');
+        return null;
+    }
+    try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload.sub || payload.username || null; // 'sub' sau 'username' în funcție de token
+    } catch (e) {
+        console.error('Eroare la extragerea username-ului din token:', e);
+        return null;
+    }
 };

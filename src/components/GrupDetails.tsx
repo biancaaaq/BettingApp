@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { GrupPrivat, GrupMember } from '../types';
+import ChatGrup from './ChatGrup'; // Adaugă importul
 import '../design/GrupDetails.css';
 
 const GrupDetails: React.FC = () => {
@@ -109,6 +110,11 @@ const GrupDetails: React.FC = () => {
             </form>
           </div>
         )}
+
+        {/* Adăugăm componenta ChatGrup */}
+        <div className="grup-chat">
+          <ChatGrup grupId={parseInt(id!)} />
+        </div>
       </div>
 
       <div className="centered-button-wrapper">
