@@ -4,13 +4,16 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proiect.bet.sportbet.models.GrupPrivat;
 import proiect.bet.sportbet.models.InvitatieGrup;
 import proiect.bet.sportbet.models.Bilet;
 import proiect.bet.sportbet.service.GrupPrivatService;
-
+import proiect.bet.sportbet.models.Mesaj;
+import proiect.bet.sportbet.repository.MesajRepository;
 import java.util.List;
 
 @RestController
@@ -158,5 +161,16 @@ public class GrupPrivatController {
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+
+    @Autowired
+    private MesajRepository mesajRepository;
+
+    @GetMapping("/{id}/mesaje")
+    public ResponseEntity<List<Mesaj>> getMesaje(@PathVariable Long id) {
+        List<Mesaj> mesaje = mesajRepository.findByGrupIdOrderByTimestampAsc(id);
+        System.out.println("Mesaje returnate pentru grup " + id + ": " + mesaje);
+        return ResponseEntity.ok(mesaje);
     }
 }

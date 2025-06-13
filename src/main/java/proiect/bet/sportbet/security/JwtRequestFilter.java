@@ -30,8 +30,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        // Permite cererile către /api/auth/login fără verificare
-        if (request.getRequestURI().startsWith("/api/auth/login")) {
+        // Permite cererile către /api/auth/login și /ws fără verificare
+        if (request.getRequestURI().startsWith("/api/auth/login") || request.getServletPath().startsWith("/ws")) {
             chain.doFilter(request, response);
             return;
         }
@@ -54,29 +54,29 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 System.out.println("JWT Token validation failed");
             }
         } else {
-            System.out.println("JWT Token does not begin with Bearer String");
+            System.out.println("JWT Token does not begin with Bearer String pentru URI: " + request.getRequestURI());
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-    UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
-    System.out.println("Încărcare utilizator: " + username + ", Activ: " + userDetails.isEnabled());
-    if (jwtUtil.validateToken(jwtToken, userDetails)) {
-            if (!userDetails.isEnabled()) {
-                System.out.println("Contul utilizatorului " + username + " este autoexclus");
-                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-                response.getWriter().write("Contul este autoexclus");
-                return;
+            UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
+            System.out.println("Încărcare utilizator: " + username + ", Activ: " + userDetails.isEnabled());
+            if (jwtUtil.validateToken(jwtToken, userDetails)) {
+                if (!userDetails.isEnabled()) {
+                    System.out.println("Contul utilizatorului " + username + " este autoexclus");
+                    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                    response.getWriter().write("Contul este autoexclus");
+                    return;
+                }
+                System.out.println("Autorități utilizator: " + userDetails.getAuthorities());
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                usernamePasswordAuthenticationToken
+                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            } else {
+                System.out.println("Token invalid pentru utilizator: " + username);
             }
-            System.out.println("Autorități utilizator: " + userDetails.getAuthorities());
-            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                    new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-            usernamePasswordAuthenticationToken
-                    .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-        } else {
-            System.out.println("Token invalid pentru utilizator: " + username);
         }
-    }
         chain.doFilter(request, response);
     }
 }
