@@ -1,4 +1,4 @@
-#  Platformă de Pariuri Sportive
+##  Platformă de Pariuri Sportive
 Proiect realizat pentru disciplina "Metode de Dezvoltare Software" din cadrul Facultății de Matematică și Informatică, Universitatea București.
 ---
 
