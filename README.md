@@ -64,7 +64,32 @@ User stories:
 - Commits: https://github.com/biancaaaq/BettingApp/commits/
 
 
-  
+##  Testare automată
+
+Framework-uri utilizate:
+- **JUnit** – teste pentru servicii backend (pariere, validare JWT, gestionare sold)
+- **React Testing Library** – teste pentru componente frontend
+
+Testele acoperă:
+- Validarea datelor introduse
+- Comportamentul componentelor vizuale
+- Fluxul de autentificare
+
+
+##  Design Patterns
+
+În cadrul dezvoltării aplicației, am utilizat următoarele patternuri de design, specifice arhitecturii moderne web:
+
+- **Singleton** – aplicat serviciilor din backend (ex: `UserService`, `BetService`), pentru a asigura existența unei singure instanțe a fiecărui serviciu și a facilita injectarea controlată prin Spring.
+- **MVC (Model–View–Controller)** – pattern adoptat nativ în Spring Boot, care separă clar logica de business (Service), manipularea datelor (Repository) și interfața cu utilizatorul (Controller).
+- **DTOs (Data Transfer Objects)** – folosite pentru a transmite date între backend și frontend într-un mod controlat, evitând expunerea directă a entităților din baza de date.
+
+
+##  Prompt Engineering
+
+Pe parcursul dezvoltării, am utilizat AI pentru asistență și automatizare: 
+
+
 
 
 
