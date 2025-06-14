@@ -8,7 +8,6 @@ Proiect realizat pentru disciplina "Metode de Dezvoltare Software" din cadrul Fa
 - [Udriște Andrei](https://github.com/andreiudriste)
 - [Chitacu Petrica](https://github.com/picky04)
 
---
 
 ## Descrierea proiectului
 
