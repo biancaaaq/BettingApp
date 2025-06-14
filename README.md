@@ -28,3 +28,46 @@ Proiectul este dezvoltat pe o arhitectură client-server și utilizează următo
 
 Aplicația este scalabilă, sigură și gândită pentru a fi ușor de extins în cazul adăugării de funcționalități viitoare.
 
+##  Demo
+
+- **Live Demo**: [link demo live, ex. Railway/Vercel]
+- **Demo video**: [link YouTube sau Google Drive]
+
+##  Backlog & User Stories
+
+Am utilizat GitHub Projects pentru a organiza sarcinile în echipă.  
+Link către board: [https://github.com/users/biancaaaq/projects/3]
+
+User stories:
+1. Ca utilizator neînregistrat, vreau să pot vedea lista meciurilor și cotele disponibile.
+2. Ca utilizator înregistrat, vreau să pot paria pe un meci, individual sau în grup.
+3. Ca utilizator, vreau să îmi văd soldul actual și istoricul biletelor.
+4. Ca utilizator, vreau să pot solicita autoexcluderea temporară.
+5. Ca administrator, vreau să pot aproba sau respinge cererile de autoexcludere.
+6. Ca administrator, vreau să pot edita și bloca cotele pentru anumite meciuri.
+7. Ca utilizator, vreau să primesc un mesaj de eroare clar dacă JWT-ul meu expiră.
+8. Ca utilizator, vreau ca autentificarea să fie sigură și tokenul să fie salvat local.
+9. Ca utilizator, vreau să pot crea un grup privat pentru a paria în echipă.
+10. Ca administrator, vreau să pot adăuga promoții care apar pe pagina Home.
+
+##  Diagrame
+
+- [x] Diagrama Use Case (`/docs/use_case.png`)
+- [x] Diagrama UML a componentelor backend (`/docs/uml_backend.png`)
+- [x] Diagrama Workflow UI (`/docs/workflow_ui.png`)
+
+
+##  Source control cu Git
+
+- Repository organizat pe ramuri `frontend/`, `backend/`
+- Branches: https://github.com/biancaaaq/BettingApp/branches
+- Commits: https://github.com/biancaaaq/BettingApp/commits/
+
+
+  
+
+
+
+
+
+
