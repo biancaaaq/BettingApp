@@ -80,7 +80,7 @@ Testele acoperă:
 
 În cadrul dezvoltării aplicației, am utilizat următoarele patternuri de design, specifice arhitecturii moderne web:
 
-- **Singleton** – aplicat serviciilor din backend (ex: `UserService`, `BetService`), pentru a asigura existența unei singure instanțe a fiecărui serviciu și a facilita injectarea controlată prin Spring.
+- **Singleton** – aplicat serviciilor din backend (ex: [service](https://github.com/biancaaaq/BettingApp/tree/backend/src/main/java/proiect/bet/sportbet/service) ), pentru a asigura existența unei singure instanțe a fiecărui serviciu și a facilita injectarea controlată prin Spring.
 - **MVC (Model–View–Controller)** – pattern adoptat nativ în Spring Boot, care separă clar logica de business (Service), manipularea datelor (Repository) și interfața cu utilizatorul (Controller).
 - **DTOs (Data Transfer Objects)** – folosite pentru a transmite date între backend și frontend într-un mod controlat, evitând expunerea directă a entităților din baza de date.
 
