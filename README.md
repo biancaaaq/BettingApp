@@ -87,7 +87,7 @@ Testele acoperă:
 
 ##  Prompt Engineering
 
-Pe parcursul dezvoltării, am utilizat AI pentru asistență și automatizare: 
+Pe parcursul dezvoltării, am utilizat AI pentru asistență și automatizare: [documentare](https://github.com/biancaaaq/BettingApp/blob/main/Prompt%20Engineering.pdf)
 
 
 
