@@ -49,4 +49,9 @@ public class JwtUtil {
         boolean isTokenExpired = expiration.before(new Date());
         return (username.equals(userDetails.getUsername()) && !isTokenExpired);
     }
+
+    public void setExpirationTime(long expirationTime) {
+    this.expirationTime = expirationTime;
+}
+
 }
