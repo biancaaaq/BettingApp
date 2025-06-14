@@ -1,0 +1,67 @@
+.promotii-page {
+  padding: 40px;
+  background: linear-gradient(135deg, #ffe6f0, #ffffff);
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.promotii-title {
+  text-align: center;
+  font-size: 36px;
+  color: #B5354E;
+  font-family: 'Lobster', cursive;
+  margin-bottom: 30px;
+}
+
+.promotii-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* max 2 coloane */
+  gap: 30px;
+  justify-content: center;
+}
+
+.promotie-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.promotie-card:hover {
+  transform: scale(1.03);
+}
+
+.promotie-image-container {
+  position: relative;
+  width: 100%;
+  height: 280px;
+}
+
+.promotie-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.promotie-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(181, 53, 78, 0.85);
+  color: white;
+  padding: 16px;
+  text-align: center;
+  backdrop-filter: blur(2px);
+}
+
+.promotie-overlay h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.promotie-overlay p {
+  margin: 8px 0 0;
+  font-size: 14px;
+}

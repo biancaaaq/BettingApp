@@ -42,6 +42,7 @@ const Home: React.FC = () => {
                     {/* <Link to="/tranzactii">Tranzacții</Link>
                     <Link to="/autoexcludere">Auto-excludere</Link> */}
                     <Link to="/contul-meu">Contul-Meu</Link>
+                    <Link to="/promotii">Promoții</Link>
                     {role === 'ADMIN' && <Link to="/admin">Admin Panel</Link>}
                 </div>
                  

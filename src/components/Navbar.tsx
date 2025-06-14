@@ -25,6 +25,7 @@ const Navbar: React.FC = () => {
         <Link to="/bilete/mele">Biletele Mele</Link>
         <Link to="/grupuri">Grupuri</Link> {/* Re-adăugat link-ul */}
         <Link to="/contul-meu">Contul Meu</Link>
+        <Link to="/promotii">Promoții</Link>
         {role === 'ADMIN' && <Link to="/admin">Admin Panel</Link>}
       </div>
 
