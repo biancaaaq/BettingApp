@@ -57,9 +57,9 @@ User stories:
 
 ##  Diagrame
 
-- [x] Diagrama Workflow UI [`/workflow.jpg`](https://github.com/biancaaaq/BettingApp/blob/main/workflow.jpg)
-- [x] Diagrama Model Class (`/docs/modelclass.png`)
-- [x] Diagrama UML a componentelor backend [`/uml_controller.jpg`](https://github.com/biancaaaq/BettingApp/blob/main/uml_controller.jpg)
+- [x] Diagrama Workflow UI [`/Diagrama workflow UI.jpg`](https://github.com/biancaaaq/BettingApp/blob/main/Diagrama%20workflow%20UI.jpg)
+- [x] Diagrama Model Class [`/Diagrama UML a claselor`](https://github.com/biancaaaq/BettingApp/blob/main/Diagrama%20UML%20a%20claselor.jpg)
+- [x] Diagrama UML a componentelor backend [`/Diagrama UML a componentelor backend.jpg`](https://github.com/biancaaaq/BettingApp/blob/main/Diagrama%20UML%20a%20componentelor%20backend.jpg)
 
 
 ##  Source control cu Git
