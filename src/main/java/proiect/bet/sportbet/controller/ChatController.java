@@ -39,20 +39,27 @@ public class ChatController {
         try {
             System.out.println("Mesaj primit pentru grupul " + grupId + ": " + (mesajDto.getContinut() != null ? mesajDto.getContinut() : "null"));
 
+            // Obține utilizatorul autentificat din contextul de securitate
             String username = authentication != null ? authentication.getName() : "robert";
             System.out.println("Utilizator autentificat: " + username);
+            
+            // Căutăm utilizatorul în baza de date pe baza numelui utilizatorului
             Utilizator utilizator = utilizatorRepository.findByNumeUtilizator(username)
                     .orElseThrow(() -> new RuntimeException("Utilizator nu a fost găsit: " + username));
             System.out.println("Utilizator găsit: " + utilizator.getNumeUtilizator() + " cu ID: " + utilizator.getId());
 
+            // Căutăm grupul în baza de date pe baza ID-ului
             GrupPrivat grup = grupPrivatRepository.findById(grupId)
                     .orElseThrow(() -> new RuntimeException("Grup nu a fost găsit"));
 
+            // Creăm un nou mesaj
             Mesaj mesaj = new Mesaj();
             mesaj.setContinut(mesajDto.getContinut());
             mesaj.setGrup(grup);
             mesaj.setUtilizator(utilizator); // Setează utilizatorul real
             mesaj.setTimestamp(LocalDateTime.now());
+
+            // Salvăm mesajul în baza de date
             Mesaj savedMesaj = mesajRepository.save(mesaj);
             System.out.println("Mesaj salvat: " + savedMesaj);
             return savedMesaj; // Returnează mesajul cu utilizatorul real

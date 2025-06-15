@@ -98,4 +98,11 @@ public class MeciController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/live")
+    public ResponseEntity<List<Meci>> getLiveMatchesToday() {
+        return ResponseEntity.ok(meciService.getLiveMatchesToday());
+    }
+
+
 }

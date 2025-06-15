@@ -4,10 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import proiect.bet.sportbet.models.BiletCota;
+import proiect.bet.sportbet.models.BiletCotaId;
 
 import java.util.List;
 
-public interface BiletCotaRepository extends JpaRepository<BiletCota, Long> {
+public interface BiletCotaRepository extends JpaRepository<BiletCota, BiletCotaId> {
 
     @Query("SELECT DISTINCT bc.bilet.id FROM BiletCota bc WHERE bc.cota.id = :cotaId")
     List<Long> findDistinctBiletIdsByCotaId(@Param("cotaId") Long cotaId);

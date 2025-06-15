@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import proiect.bet.sportbet.models.Meci;
 import proiect.bet.sportbet.repository.MeciRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,4 +52,14 @@ public class MeciService {
             throw new RuntimeException("Meciul cu ID-ul " + id + " nu a fost găsit.");
         }
     }
+
+    public List<Meci> getLiveMatchesToday() {
+    LocalDate azi = LocalDate.now();
+    LocalDateTime start = azi.atStartOfDay();
+    LocalDateTime end = azi.plusDays(1).atStartOfDay().minusNanos(1);
+    return meciRepository.findByDataMeciBetween(start, end);
+}
+
+
+
 }
