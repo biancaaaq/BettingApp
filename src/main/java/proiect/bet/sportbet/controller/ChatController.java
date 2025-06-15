@@ -40,7 +40,7 @@ public class ChatController {
             System.out.println("Mesaj primit pentru grupul " + grupId + ": " + (mesajDto.getContinut() != null ? mesajDto.getContinut() : "null"));
 
             // Obține utilizatorul autentificat din contextul de securitate
-            String username = authentication != null ? authentication.getName() : "robert";
+            String username = authentication != null ? authentication.getName() : "Utilizator";
             System.out.println("Utilizator autentificat: " + username);
             
             // Căutăm utilizatorul în baza de date pe baza numelui utilizatorului
