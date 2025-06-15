@@ -39,16 +39,21 @@ Am utilizat GitHub Projects pentru a organiza sarcinile în echipă.
 Link către board: [https://github.com/users/biancaaaq/projects/3]
 
 User stories:
-1. Ca utilizator neînregistrat, vreau să pot vedea lista meciurilor și cotele disponibile.
-2. Ca utilizator înregistrat, vreau să pot paria pe un meci, individual sau în grup.
-3. Ca utilizator, vreau să îmi văd soldul actual și istoricul biletelor.
-4. Ca utilizator, vreau să pot solicita autoexcluderea temporară.
-5. Ca administrator, vreau să pot aproba sau respinge cererile de autoexcludere.
-6. Ca administrator, vreau să pot edita și bloca cotele pentru anumite meciuri.
-7. Ca utilizator, vreau să primesc un mesaj de eroare clar dacă JWT-ul meu expiră.
-8. Ca utilizator, vreau ca autentificarea să fie sigură și tokenul să fie salvat local.
-9. Ca utilizator, vreau să pot crea un grup privat pentru a paria în echipă.
-10. Ca administrator, vreau să pot adăuga promoții care apar pe pagina Home.
+1. Ca utilizator neînregistrat, vreau să pot vedea meciurile live și cotele asociate pe pagina principală, pentru a decide dacă vreau să mă înregistrez și să pariez, având acces la o listă actualizată în timp real. 
+2. Ca utilizator neînregistrat, vreau să pot accesa o pagină de login/înregistrare, pentru a-mi crea un cont și a începe să pariez, cu un formular care să includă numele utilizatorului, e-mail și parola. 
+3. Ca utilizator înregistrat, vreau să pot selecta cote din meciurile live și să creez un bilet de pariere, pentru a plasa un pariu, cu posibilitatea de a seta o miză personalizată și de a primi o confirmare imediată a biletului creat. 
+4. Ca utilizator înregistrat, vreau să pot vizualiza biletele mele create în secțiunea „Biletele Mele”, pentru a verifica starea lor (ACTIVE, WON, LOST), inclusiv detalii precum data plasării și suma pariată. 
+5. Ca utilizator înregistrat, vreau să pot crea sau alătura un grup privat de pariere, pentru a paria împreună cu alți utilizatori, cu opțiunea de a invita membri prin numele lor . 
+6. Ca utilizator, vreau ca autentificarea să fie sigură și tokenul să fie salvat local, pentru a-mi proteja datele personale și a menține accesul fluid la cont fără a mă autentifica de fiecare dată, cu implementarea unui mecanism JWT securizat care criptează tokenul, limitează durata de valabilitate. 
+7. Ca utilizator inregistrat, vreau sa pot sa fac o cerere de autoexcludere, care, dupa ce este aprobata de admin, imi va interzice sa imi accesez contul. La cererea utilizatorului contul poate sa fie reactivat de admin. 
+8. Ca utilizator înregistrat, vreau să pot accesa contul meu pentru a vedea soldul, informatii despre contul meu si istoricul tranzacțiilor, pentru a gestiona finanțele mele, cu o interfață care afișează soldul în timp real . 
+9. Ca administrator, vreau să pot gestiona cote pentru meciuri (adaugare, editare, ștergere) prin panoul de administrare, pentru a actualiza oferta, cu o interfață care permite încărcarea automată a datelor prin API. 
+10. Ca administrator, vreau să pot aproba sau respinge cereri de autoexcludere, pentru a asigura siguranța utilizatorilor, cu o listă de cereri în așteptare și notificări automate către utilizatori după decizie. 
+11. Ca administrator, vreau să pot adăuga promoții care apar pe pagina Home, pentru a atrage utilizatorii către oferte speciale și a crește angajamentul, cu o interfață care să permită introducerea titlului, descrierii, imaginii (opțional), datei de început și datei de sfârșit și afișarea automată a promoțiilor active pe pagina principală, 
+
+ 
+
+ 
 
 ##  Diagrame
 
