@@ -23,7 +23,7 @@ import AprobaCereri from './components/AprobaCereri';
 import ManageUsers from './components/ManageUsers';
 import PrivateRoute from './components/PrivateRoute';
 import Matches from './components/Matches';
-import LiveOdds from './components/LiveOdds';
+// import LiveOdds from './components/LiveOdds';
 import Layout from './components/Layout';
 import { BetSlipProvider } from './context/BetSlipContext';
 import ContulMeu from './components/ContulMeu';
@@ -32,6 +32,7 @@ import CreateGrup from './components/CreateGrup';
 import GrupDetails from './components/GrupDetails';
 import GestionareCote from './components/GestionareCote'; // sau calea ta
 import Promotii from './components/Promotii';
+import LiveToday from './components/LiveToday';
 
 
 const App: React.FC = () => {
@@ -43,8 +44,8 @@ const App: React.FC = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/meciuri" element={<Layout><Matches /></Layout>} />
-                <Route path="/live" element={<Layout><LiveOdds /></Layout>} />
-
+                {/* <Route path="/live" element={<Layout><LiveOdds /></Layout>} /> */}
+                <Route path="/live" element={<LiveToday />} />
                 {/* Protejate */}
                 <Route path="/bilete/mele" element={<Layout><PrivateRoute><BileteMele /></PrivateRoute></Layout>} />
                 <Route path="/tranzactii" element={<Layout><PrivateRoute><Tranzactii /></PrivateRoute></Layout>} />

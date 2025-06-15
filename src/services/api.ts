@@ -12,11 +12,16 @@ api.interceptors.request.use(
     (config) => {
         const token = getToken();
         console.log('Token folosit în cerere:', token);
+
+        // ✅ Asigurăm că headers este definit pentru a evita TS18048
+        config.headers = config.headers || {};
+
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         } else {
             console.warn('Niciun token găsit în localStorage');
         }
+
         return config;
     },
     (error) => Promise.reject(error)
@@ -30,6 +35,7 @@ api.interceptors.response.use(
             window.location.href = '/cont-autoexclus';
             return Promise.reject(new Error('Contul este autoexclus'));
         }
+
         if (error.response && error.response.status === 401) {
             console.log('Token expirat, redirecționare la /login');
             localStorage.removeItem('token');
@@ -37,9 +43,11 @@ api.interceptors.response.use(
             window.location.href = '/login';
             return Promise.reject(new Error('Token expirat, te rugăm să te loghezi din nou'));
         }
+
         if (error.response && error.response.status === 403) {
             console.log('Acces interzis (403), posibil rol incorect:', error.response.data);
         }
+
         return Promise.reject(error);
     }
 );

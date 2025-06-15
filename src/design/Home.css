@@ -1,22 +1,84 @@
+/* ===== Layout general pentru pagina HOME ===== */
 .home-page {
-    background: url('../assets/home.jpg') no-repeat center center fixed;
-    background-size: cover;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background: url('../assets/home.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* ===== Navbar ===== */
 .navbar {
-    margin-top: 10px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    padding: 0 32px;
-    border-radius: 32px;
-    height: 60px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    gap: 16px;
+  margin-top: 10px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  border-radius: 32px;
+  height: 60px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  gap: 16px;
 }
+
+.logo {
+  font-family: 'Lobster', cursive;
+  font-size: 42px;
+  color: #B5354E;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.nav-links {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #B5354E;
+  transform: scale(1.1);
+}
+
+/* ===== Profil + logout ===== */
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  color: #000;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 14px;
+  color: #000;
+}
+
+/* ===== Layout 3 coloane ===== */
 .page-layout {
   display: flex;
   flex-direction: row;
@@ -24,143 +86,83 @@
   gap: 20px;
   padding: 20px;
   box-sizing: border-box;
+  align-items: flex-start;
 }
 
+/* ===== Sidebaruri ===== */
 .sidebar-form {
-  width: 30%;
+  width: 280px;
   background: #fff;
   padding: 20px;
-  height: 100vh;
   overflow-y: auto;
-  border-right: 1px solid #ddd;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  max-height: 90vh;
+  position: sticky;
+  top: 90px;
 }
 
+/* ===== Conținut principal ===== */
 .page-content {
-  width: 70%;
-  padding: 20px;
+  flex: 1;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-
-/* Logo */
-
-.logo {
-    font-family: 'Lobster', cursive;
-    font-size: 42px;
-    color: #B5354E;
-    white-space: nowrap;
-    transition: transform 0.3s ease;
-    text-decoration: none;   /* elimină sublinierea */
-    cursor: pointer;
+/* ===== Titlu promoții HOME ===== */
+.home-promotii-title {
+  font-size: 28px;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.logo:hover {
-    transform: scale(1.1);
+/* ===== Grilă promoții 2 coloane ===== */
+.home-promotii-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  justify-items: center;
+  width: 100%;
 }
-/* Meniu centrat */
-.nav-links {
-    display: flex;
-    flex: 1;
-    justify-content: center;
+
+/* ===== Card promoție HOME ===== */
+.home-promotie-card {
+  max-width: 250px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.home-promotie-card:hover {
+  transform: scale(1.03);
+}
+
+/* ===== Imagine promoție HOME ===== */
+.home-promotie-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* ===== Responsive HOME ===== */
+@media (max-width: 768px) {
+  .home-promotii-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-form {
+    display: none;
+  }
+
+  .page-layout {
+    flex-direction: column;
     align-items: center;
-    gap: 32px;
-    flex-wrap: wrap;
+  }
 }
-
-.nav-links a {
-    font-weight: bold;
-    color: #000;
-    text-decoration: none;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    transition: all 0.2s ease-in-out;
-}
-
-.nav-links a:hover {
-    color: #B5354E;           /* rozul aplicației */
-    transform: scale(1.1);    /* mărire ușoară */
-}
-
-/* Dreapta: profil și logout */
-.profile-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    white-space: nowrap;
-}
-
-.deposit-button {
-    background-color: #eee;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.user-details {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.username {
-    font-weight: 600;
-    font-size: 14px;
-    color: #000;
-}
-
-.avatar {
-    background-color: #800000;
-    color: white;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-}
-
-.logout-button {
-    background: none;
-    border: none;
-    font-weight: bold;
-    font-size: 14px;
-    text-decoration: none;
-    cursor: pointer;
-    color: #000;
-}
-
-.home-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 100px); /* scade înălțimea navbar-ului */
-    text-align: center;
-}
-
-.pariaza-titlu {
-    font-size: 4rem;
-    color: #000;
-    cursor: pointer;
-    font-weight: bold;
-    animation: floatText 3s ease-in-out infinite;
-    transition: transform 0.2s ease;
-    text-decoration: none;
-}
-.pariaza-titlu:hover {
-    transform: scale(1.20);
-}
-
-/* Animația de plutire sus-jos */
-@keyframes floatText {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(15px);
-    }
-}
-

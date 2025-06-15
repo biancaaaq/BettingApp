@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getLiveOdds } from '../services/oddsService';
+import api from '../services/api';
 import '../design/LiveMatchesSidebar.css';
 
 interface Match {
-  id: string;
-  home_team: string;
-  away_team: string;
+  id: number;
+  echipaAcasa: string;
+  echipaDeplasare: string;
+  dataMeci: string;
 }
 
 const LiveMatchesSidebar: React.FC = () => {
@@ -14,19 +15,25 @@ const LiveMatchesSidebar: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchLive = async () => {
-      try {
-        const data = await getLiveOdds();
-        setMatches(data);
-      } catch (err) {
-        console.error("Eroare la încărcarea cotelor live:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchTodayMatches = async () => {
+    try {
+      const azi = new Date().toISOString().split('T')[0];
+      const response = await api.get('/meciuri');
+      const meciuriAzi = response.data.filter((meci: Match) =>
+        meci.dataMeci.startsWith(azi)
+      );
+      setMatches(meciuriAzi);
+    } catch (err) {
+      console.error("Eroare la încărcarea meciurilor de azi:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchLive();
+  useEffect(() => {
+    fetchTodayMatches(); // la montare
+    const interval = setInterval(fetchTodayMatches, 30000); // refresh la 30 secunde
+    return () => clearInterval(interval);
   }, []);
 
   const handleClick = () => {
@@ -35,11 +42,11 @@ const LiveMatchesSidebar: React.FC = () => {
 
   return (
     <div className="live-matches-sidebar">
-      <h3>Meciuri Live</h3>
+      <h3>Meciuri de azi</h3>
       {loading ? (
         <p>Se încarcă...</p>
       ) : matches.length === 0 ? (
-        <p>Niciun meci live acum.</p>
+        <p>Niciun meci disponibil azi.</p>
       ) : (
         matches.slice(0, 4).map((match) => (
           <div
@@ -48,7 +55,7 @@ const LiveMatchesSidebar: React.FC = () => {
             onClick={handleClick}
             style={{ cursor: 'pointer' }}
           >
-            <strong>{match.home_team} vs {match.away_team}</strong>
+            <strong>{match.echipaAcasa} vs {match.echipaDeplasare}</strong>
           </div>
         ))
       )}

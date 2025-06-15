@@ -1,144 +1,81 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getRole, logout } from '../services/authService';
-import '../design/Home.css';
 import TicketSidebar from '../components/TicketSidebar';
-import { useState } from 'react';
 import LiveMatchesSidebar from './LiveMatchesSidebar';
+import '../design/Home.css';
 
 const Home: React.FC = () => {
-    const token = localStorage.getItem('token');
-    const role = getRole();
-    const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  const role = getRole();
+  const navigate = useNavigate();
 
-    const username = sessionStorage.getItem('username') || 'Utilizator';
-    const initiale = username.slice(0, 2).toUpperCase();
-    const [selectedCote, setSelectedCote] = useState([]);
+  const username = sessionStorage.getItem('username') || 'Utilizator';
+  const [selectedCote, setSelectedCote] = useState([]);
 
-    const handleCreate = (miza: number) => {
-        // aici trimiți biletul la backend, dacă vrei
-        console.log("Trimit bilet:", { miza, selectedCote });
-    };
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
-    const handleLogout = () => {
-        logout();
-        navigate('/login');
-    };
-    const handleGoToCreateTicket = () => {
-        navigate('/meciuri');
-    };
+  return (
+    <div className="home-page">
+      <nav className="navbar">
+        <Link to="/home" className="logo">SportsBetting</Link>
+        <div className="nav-links">
+          <Link to="/meciuri">Meciuri</Link>
+          <Link to="/live">Cote Live</Link>
+          <Link to="/bilete/mele">Biletele Mele</Link>
+          <Link to="/grupuri">Grupuri</Link>
+          <Link to="/contul-meu">Contul-Meu</Link>
+          <Link to="/promotii">Promoții</Link>
+          {role === 'ADMIN' && <Link to="/admin">Admin Panel</Link>}
+        </div>
+        <div className="profile-info">
+          {token ? (
+            <>
+              <div className="user-details">
+                <span className="username">{username}</span>
+              </div>
+              <button onClick={handleLogout} className="logout-button">Logout</button>
+            </>
+          ) : (
+            <Link to="/login" className="logout-button">Login</Link>
+          )}
+        </div>
+      </nav>
 
-    return (
-        <div className="home-page">
-            <nav className="navbar">
-                <Link to="/home" className="logo">SportsBetting</Link>
+      <div className="page-layout">
+        <div className="sidebar-form">
+          <LiveMatchesSidebar />
+        </div>
 
-                <div className="nav-links">
-                    {/* <Link to="/bilete/creare">Creare Bilet</Link> */}
-                    <Link to="/meciuri">Meciuri</Link>
-                    <Link to="/live">Cote Live</Link>
-                    <Link to="/bilete/mele">Biletele Mele</Link>
-                    <Link to="/grupuri">Grupuri</Link>
-                    {/* <Link to="/tranzactii">Tranzacții</Link>
-                    <Link to="/autoexcludere">Auto-excludere</Link> */}
-                    <Link to="/contul-meu">Contul-Meu</Link>
-                    <Link to="/promotii">Promoții</Link>
-                    {role === 'ADMIN' && <Link to="/admin">Admin Panel</Link>}
-                </div>
-                 
+        <div className="page-content">
+          <h2 className="home-promotii-title">Cele mai bune promoții</h2>
+          <div className="home-promotii-cards-grid">
+            {[1, 2, 3, 4].map(numar => (
+              <div
+                key={numar}
+                className="home-promotie-card"
+                onClick={() => navigate('/promotii')}
+                style={{ cursor: 'pointer' }}
+              >
+                <img
+                  src={`/promotii/promotie_${numar}.jpg`}
+                  alt={`Promotie ${numar}`}
+                  className="home-promotie-img"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
 
-                <div className="profile-info">
-                     {token ? (
-                        <>
-                            <div className="user-details">
-                                <span className="username">{username}</span>
-                            </div>
-                            <button onClick={handleLogout} className="logout-button">Logout</button>
-                        </>
-                    ) : (
-                        <Link to="/login" className="logout-button">Login</Link>
-                    )}
-                
-                 </div>
-            </nav>
-            <div className="home-content-layout">
-            {/* Coloana stânga cu meciuri live */}
-                <div className="left-sidebar">
-                    <LiveMatchesSidebar />
-                </div>
-            </div>
-
-            {token? (
-            <div className="home-content">
-                <h1 className="pariaza-titlu" onClick={handleGoToCreateTicket}>Pariază acum!</h1>
-            </div>) :(<div className="home-content">
-                         < Link to="/login" className="pariaza-titlu" >Pariază acum!</Link>
-                       </div> )}
-                                              <div>
-                       <TicketSidebar selectedCote={selectedCote} onClear={() => setSelectedCote([])} />
-
-</div>
-                       </div>
-
-
-       
-    );
+        <div className="sidebar-form">
+          <TicketSidebar selectedCote={selectedCote} onClear={() => setSelectedCote([])} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Home;
-// import React from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-// import { getRole, logout } from '../services/authService';
-// import '../design/Home.css';
-
-// const Home: React.FC = () => {
-//     const token = localStorage.getItem('token');
-//     const role = getRole();
-//     const navigate = useNavigate();
-
-//     const username = localStorage.getItem('username') || 'Vizitator';
-//     const initiale = username.slice(0, 2).toUpperCase();
-
-//     const handleLogout = () => {
-//         logout();
-//         navigate('/login');
-//     };
-
-//     return (
-//         <div className="home-page">
-//             <nav className="navbar">
-//                 <div className="logo">
-//                     <Link to="/home" className="logo-link">SportsBetting</Link>
-//                 </div>
-
-//                 <div className="nav-links">
-//                     <Link to="/bilete/creare">Creare Bilet</Link>
-//                     <Link to="/bilete/mele">Biletele Mele</Link>
-//                     <Link to="/tranzactii">Tranzacții</Link>
-//                     <Link to="/autoexcludere">Auto-excludere</Link>
-//                     {role === 'ADMIN' && <Link to="/admin">Admin Panel</Link>}
-//                 </div>
-
-//                 <div className="profile-info">
-//                     {token ? (
-//                         <>
-//                             <div className="user-details">
-//                                 <span className="username">{username}</span>
-//                             </div>
-//                             <button onClick={handleLogout} className="logout-button">Logout</button>
-//                         </>
-//                     ) : (
-//                         <Link to="/login" className="login-button">Login</Link>
-//                     )}
-//                 </div>
-//             </nav>
-
-//             <div className="home-content">
-//                 <h2>Bine ai venit!</h2>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Home;
-

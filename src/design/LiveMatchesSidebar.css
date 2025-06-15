@@ -1,43 +1,50 @@
 .live-matches-sidebar {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    width: 300px;
-    background-color: white;
-    border-right: 2px solid #ff0033;
-    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    height: calc(100vh - 80px);
-    overflow-y: auto;
-    z-index: 1000;
-    border-radius: 32px;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 360px;
+  height: calc(100vh - 80px);
+  padding: 24px;
+
+  background-color: #f9f9f9;
+  border-right: 3px solid #ff0033;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.05);
+
+  overflow-y: auto;
+  z-index: 1000;
 }
 
+/* Titlul secțiunii */
 .live-matches-sidebar h3 {
-    margin-top: 0;
-    color: #d40032;
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 1.5rem;
+  color: #d40032;
+  font-weight: bold;
+  text-align: center;
 }
 
-.live-matches-sidebar ul {
-    list-style: none;
-    padding: 0;
+/* Card individual de meci */
+.live-match-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+
+  padding: 18px 20px;
+  margin-bottom: 20px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
 }
 
-.live-matches-sidebar li {
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+.live-match-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(255, 0, 51, 0.15);
 }
 
-.live-matches-sidebar li:hover {
-    background-color: #ffe6ec;
-}
-
-.live-matches-sidebar li small {
-    color: #555;
-    display: block;
-    margin-top: 4px;
+/* Text din interiorul cardului */
+.live-match-card strong {
+  font-size: 1.1rem;
+  color: #222;
 }
