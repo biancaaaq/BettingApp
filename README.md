@@ -77,11 +77,11 @@ Framework-uri utilizate:
 
  Ce teste sunt implementate:
 
- Backend (JUnit): [teste]
+ Backend (JUnit): [teste](https://github.com/biancaaaq/BettingApp/tree/backend/src/test/java/proiect/bet/sportbet)
 - Teste unitare pentru serviciile de gestionare a biletelor și balanței
 - Validarea token-ului JWT și a logicii de autentificare
 
- Frontend (React Testing Library):
+ Frontend (React Testing Library): [teste](https://github.com/biancaaaq/BettingApp/tree/frontend/src/__tests__)
 - Teste pentru componente importante: `TicketSidebar`, `BileteMele`, `AddTranzactie`, `AddBalanta`
 - Verificarea afișării corecte a formularului, mesajelor de succes/eroare și redirecționării după acțiuni
 - Simularea apelurilor către API pentru a testa comportamentul aplicației fără backend real
