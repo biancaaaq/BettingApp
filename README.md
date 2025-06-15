@@ -57,9 +57,9 @@ User stories:
 
 ##  Diagrame
 
-- [x] Diagrama Use Case (`/docs/use_case.png`)
-- [x] Diagrama UML a componentelor backend (`/docs/uml_backend.png`)
 - [x] Diagrama Workflow UI (`/docs/workflow_ui.png`)
+- [x] Diagrama Model Class (`/docs/modelclass.png`)
+- [x] Diagrama UML a componentelor backend (`/docs/uml_backend.png`)
 
 
 ##  Source control cu Git
