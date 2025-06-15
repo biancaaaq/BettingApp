@@ -30,7 +30,7 @@ Aplicația este scalabilă, sigură și gândită pentru a fi ușor de extins î
 
 ##  Demo
 
-- **Live Demo**: [link demo live, ex. Railway/Vercel]
+- **Live Demo**: [https://demo-live-nu.vercel.app/]
 - **Demo video**: [link YouTube sau Google Drive]
 
 ##  Backlog & User Stories
