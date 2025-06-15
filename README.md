@@ -75,10 +75,22 @@ Framework-uri utilizate:
 - **JUnit** – teste pentru servicii backend (pariere, validare JWT, gestionare sold)
 - **React Testing Library** – teste pentru componente frontend
 
-Testele acoperă:
-- Validarea datelor introduse
-- Comportamentul componentelor vizuale
-- Fluxul de autentificare
+ Ce teste sunt implementate:
+
+ Backend (JUnit): [teste]
+- Teste unitare pentru serviciile de gestionare a biletelor și balanței
+- Validarea token-ului JWT și a logicii de autentificare
+
+ Frontend (React Testing Library):
+- Teste pentru componente importante: `TicketSidebar`, `BileteMele`, `AddTranzactie`, `AddBalanta`
+- Verificarea afișării corecte a formularului, mesajelor de succes/eroare și redirecționării după acțiuni
+- Simularea apelurilor către API pentru a testa comportamentul aplicației fără backend real
+
+ Acoperire generală:
+- Componentele critice din aplicație au fost testate
+- Fluxurile principale (ex: pariere, tranzacție, încărcare bilete) sunt verificate automat
+- Asigurare minimă că aplicația funcționează corect la introducerea datelor și interacțiuni de bază
+
 
 
 ##  Design Patterns
