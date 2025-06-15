@@ -67,6 +67,8 @@ User stories:
 - Repository organizat pe ramuri `frontend/`, `backend/`
 - Branches: https://github.com/biancaaaq/BettingApp/branches
 - Commits: https://github.com/biancaaaq/BettingApp/commits/
+- Raportare bug:[aici](https://github.com/biancaaaq/BettingApp/issues/5)
+- Rezolvare cu pull request: [aici](https://github.com/biancaaaq/BettingApp/pulls?q=is%3Apr+is%3Aclosed)
 
 
 ##  Testare automată
