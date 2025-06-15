@@ -31,7 +31,7 @@ Aplicația este scalabilă, sigură și gândită pentru a fi ușor de extins î
 ##  Demo
 
 - **Live Demo**: [https://demo-live-nu.vercel.app/]
-- **Demo video**: [link YouTube sau Google Drive]
+- **Demo video**: [[link YouTube](https://youtu.be/XufB09C3f1E)]
 
 ##  Backlog & User Stories
 
